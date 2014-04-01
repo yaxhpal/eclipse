@@ -1,0 +1,958 @@
+<!-- TMPL_INCLUDE NAME="doc-head-open.inc" -->
+<!-- TMPL_IF NAME="LibraryNameTitle" --><!-- TMPL_VAR NAME="LibraryNameTitle" --><!-- TMPL_ELSE -->Koha Online<!-- /TMPL_IF --> Catalog &rsaquo; Library Home for
+<!-- TMPL_LOOP name="BORROWER_INFO" -->
+    <!-- TMPL_VAR name="firstname" --> <!-- TMPL_VAR name="surname" -->
+<!-- /TMPL_LOOP -->
+<!-- TMPL_INCLUDE NAME="doc-head-close.inc" -->
+<script type="text/javascript" src="<!-- TMPL_VAR name="themelang" -->/lib/jquery/plugins/jquery.tablesorter.min.js"></script> <!-- /TMPL_IF -->  
+<script type="text/JavaScript" language="JavaScript">
+//<![CDATA[
+var MSG_CONFIRM_DELETE_HOLD = _("Are you sure you want to cancel this hold?");
+
+//]]>
+</script>
+<script>function showlist(id){
+document.getElementById(id).style.display ='block';
+}
+function hidelist(id){
+document.getElementById(id).style.display ='none';
+}
+
+function showhide(tabcont,tablink){
+
+document.getElementById('ta1').className="";
+
+<!-- TMPL_IF NAME="overdues_count" -->
+document.getElementById('ta2').className="";
+<!-- /TMPL_IF -->
+
+<!-- TMPL_IF NAME="amountlessthanzero" -->
+document.getElementById('ta3').className="";
+<!-- /TMPL_IF -->
+
+<!-- TMPL_IF NAME="amountoverzero" -->
+document.getElementById('ta3').className="";
+<!-- /TMPL_IF -->
+
+<!-- TMPL_IF NAME="amountoverfive" -->
+document.getElementById('ta3').className="";
+<!-- /TMPL_IF -->
+
+<!-- TMPL_IF NAME="reserves_count" -->
+document.getElementById('ta4').className="";
+<!-- /TMPL_IF -->
+
+
+document.getElementById(tablink).className="active";
+
+document.getElementById('tc1').style.display ='none';
+
+document.getElementById('tc2').style.display ='none';
+
+document.getElementById('tc3').style.display ='none';
+
+<!-- TMPL_IF name="reserves_count" -->
+document.getElementById('tc4').style.display ='none';
+<!-- /TMPL_IF -->
+//document.getElementById('opac-user-holds').style.display ='none';
+
+           
+
+
+
+document.getElementById(tabcont).style.display ='block';
+
+
+}
+</script>
+<<style>
+<!--
+/* tables */
+table.tablesorter {
+	font-family:arial;
+	background-color: #CDCDCD;
+	margin:10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+-->
+</style>
+<!-- /TMPL_IF -->
+</head>
+<body id="opac-user">
+
+   <div id="bd">
+<!-- TMPL_INCLUDE NAME="masthead.inc" -->
+<!-- start container -->
+<!-- TMPL_IF NAME="opacuserlogin" -->
+<!-- TMPL_IF NAME="loggedinusername" -->
+<div class="container">
+	<div class="row-fluid">
+    	<!-- breadcrumb -->
+        <div class="breadcrumb">
+        <!-- TMPL_LOOP name="BORROWER_INFO" -->
+        <a href="/cgi-bin/koha/opac-user.pl?from=1">Home</a>  /  <a href="/cgi-bin/koha/opac-account.pl">Account <span>(Welcome <!-- TMPL_VAR NAME="firstname" --> <!-- TMPL_VAR NAME="surname" -->) </span></a> 
+        <!-- /TMPL_LOOP -->
+        </div>
+        <!-- breadcrumb -->
+        <!-- start container main -->
+        <div class="container_main MB10">
+        	<div class="bg_leftcolumn"></div>
+        	<!-- start leftcolumn -->
+            <div class="leftcolumn">
+            	<ul class="categorynav">
+                    <li <!-- TMPL_UNLESS NAME="dash" -->class="current"<!-- /TMPL_UNLESS --> ><a href="/cgi-bin/koha/opac-user.pl">Dashboard <span>Browse collection</span></a></li>
+                    <li <!-- TMPL_IF NAME="dash"  -->class="current"<!-- /TMPL_IF -->><a href="/cgi-bin/koha/opac-user.pl?from=1">My Summary <span>Books user summary</span></a></li>
+                    <li><a href="/cgi-bin/koha/opac-account.pl">My Fines <span>User fine and charges detail</span></a></li>
+                    <li><a href="/cgi-bin/koha/opac-userupdate.pl">My Personal Details <span>View personal detail</span></a></li>
+                      <li><a href="/cgi-bin/koha/opac-passwd.pl">Change my password <span>Update your password</span></a></li>
+                    <li><a href="/cgi-bin/koha/opac-readingrecord.pl">My Reading History <span>User previous checkouts</span></a></li>
+                    <li><a href="/cgi-bin/koha/opac-entitlements.pl">My Entitlements <span>View allowed borrowings</span></a></li>
+                    <li><a href="/cgi-bin/koha/opac-suggestions.pl">My Purchase Suggestions <span>Suggest a Book, CD/DVD or Magazine</span></a></li>
+                </ul>
+                
+            </div>
+            <!-- end leftcolumn -->
+            <!-- start rightcolumn -->
+            <div class="rightcolumn">
+            <!-- TMPL_UNLESS NAME="dash" -->
+            	<div class="user-head">
+            	
+            	<!-- TMPL_LOOP name="BORROWER_INFO" -->
+                    <div class="headline">Hello, <!-- TMPL_VAR NAME="firstname" --> <!-- TMPL_VAR NAME="surname" --> <span>(<a href="/cgi-bin/koha/opac-main.pl?logout.x=1">Click here</a></span> if you're not <!-- TMPL_VAR NAME="title" --> <!-- TMPL_VAR NAME="firstname" --> <!-- TMPL_VAR NAME="surname" -->)</div>
+                <!-- /TMPL_LOOP -->
+                
+                
+                <!-- TMPL_IF NAME="patronupdate" --><div class="dialog message"><h3>Thank you!</h3><p>Your corrections have been submitted to the library, and a staff member will update your record as soon as possible.</p></div><!-- /TMPL_IF -->
+		
+
+        <!-- TMPL_IF NAME="flagged" -->
+		<div class="yellow-mesg">
+        <ul>
+            <!-- TMPL_IF NAME="debarred" -->
+            <!-- TMPL_ELSE -->
+	    <!-- TMPL_IF NAME = "warndeparture" -->
+	       <strong>Expiration:</strong>Your membership will expire soon on <!-- TMPL_VAR NAME="dateexpiry" -->.
+             Kindly contact your library to renew. or <a href="/cgi-bin/koha/opac-renewmembership.pl">Click here to renew now.</a>
+	   <!-- /TMPL_IF -->
+       <!-- TMPL_IF NAME = "expired" -->
+		<strong>Expiration:</strong> Your membership has expired on <!-- TMPL_VAR NAME="dateexpiry" -->.
+                    <!-- TMPL_IF EXPR="branchcode  ne 'CB'" --> 
+                    <!-- TMPL_IF EXPR="branchcode  ne 'KD'" --> 
+                      Kindly contact your library to renew.  or <a href="/cgi-bin/koha/opac-renewmembership.pl">Click here to renew now.</a>
+       				<!-- /TMPL_IF -->
+       				<!-- /TMPL_IF -->
+	 <!-- /TMPL_IF -->  
+         
+         <!-- /TMPL_IF -->          
+            <!-- TMPL_IF NAME="debarred" -->
+                <li><strong>Please note:</strong> Your account has been frozen. Usually the reason for freezing an account is old overdues or damage fees.If <a href="/cgi-bin/koha/opac-user.pl">your account page</a> shows your account to be clear, please contact the library.</li>
+            <!-- /TMPL_IF -->
+            <!-- TMPL_IF NAME="gonenoaddress" -->
+                <li><strong>Please note:</strong> According to our records, we don't have up-to-date <!-- TMPL_UNLESS NAME="OPACPatronDetails" --><a href="/cgi-bin/koha/opac-userupdate.pl">contact information</a><!-- TMPL_ELSE -->contact information<!-- /TMPL_UNLESS --> on file.  Please contact the library<!-- TMPL_IF NAME="OPACPatronDetails" --> or use the <a href="/cgi-bin/koha/opac-userupdate.pl" class="icon-remove-sign">online update form</a> to submit current information (<em>Please note:</em> there may be a delay in restoring your account if you submit online)<!-- /TMPL_IF -->.</li>
+            <!-- /TMPL_IF -->
+            <!-- TMPL_IF NAME="lost" -->
+                <li><strong>Please note: </strong> Your library card has been marked as lost or stolen. If this is an error, please contact the library.</li>
+            <!-- /TMPL_IF -->
+            <!-- TMPL_IF NAME="renewal_blocked_fines" -->
+                <li><strong>Please note: </strong> Since you have <a href="/cgi-bin/koha/opac-account.pl">more than Rs. <!-- TMPL_VAR NAME="renewal_blocked_fines" --></a> in fines, you cannot renew your books online. Please pay your fines if you wish to renew your books.</li>
+            <!-- /TMPL_IF -->
+        </ul></div>
+        <!-- /TMPL_IF -->
+                
+        <!-- TMPL_IF NAME="patronupdate" --><div class="dialog message"><h3>Thank you!</h3><p>Your corrections have been submitted to the library, and a staff member will update your record as soon as possible.</p></div><!-- /TMPL_IF -->        
+        
+        
+        
+<!-- TMPL_IF NAME="bor_messages" -->
+	    <div class="dialog message">
+	               <h3>Messages For You</h3>
+	               <ul>
+	                       <!--TMPL_LOOP NAME="bor_messages_loop" -->
+					<li>
+						<strong><!--TMPL_VAR NAME="message"--></strong><br>
+	                        		&nbsp;&nbsp;&nbsp;<i>Written on <!--TMPL_VAR NAME="message_date_formatted"--> by <!--TMPL_VAR NAME="branchname"--></i>
+					</li>
+	                        <!-- /TMPL_LOOP -->
+
+				<!-- TMPL_IF NAME="opacnote" --><li><!-- TMPL_VAR name="opacnote" --></li><!-- /TMPL_IF -->
+	               </ul>
+	       </div>
+<!-- /TMPL_IF -->
+        
+        
+        
+        
+                
+                    
+                    <div class="cl"></div>
+                </div>
+                
+                <p>To make changes to your record please contact the library.</p>
+                <div class="span12 aligncenter first-child MT10 relative">
+                <img src="/opac-tmpl/prog/images/new/ad-6.jpg" alt="" />
+                <span class="adbanner_home">
+                <a href="/cgi-bin/koha/opac-search.pl" class="btn btn-primary">Browse</a></span>
+                 </div>
+                <div class="clear"></div>
+                <div class="span12 aligncenter first-child MT10 relative">
+                	<img src="/opac-tmpl/prog/images/new/ad-3.jpg" alt="" />
+                	<span class="adbanner_home">
+                	<!-- TMPL_IF EXPR="proceed_ebooks eq '1'" -->
+                		<a href="/cgi-bin/koha/opac-ebrary.pl" class="btn btn-primary">Access</a>
+                	<!-- TMPL_ELSE -->
+                		<a href="/cgi-bin/koha/opac-entitlements.pl" class="btn btn-primary">Buy Now</a>
+                	<!-- /TMPL_IF -->
+                	</span>
+                </div>
+                <div class="clear"></div>
+                 <div class="span12 aligncenter first-child MT10 relative">
+                 	<img src="/opac-tmpl/prog/images/new/ad-4.jpg" alt="" />
+                 	<span class="adbanner_home">
+                 	<!-- TMPL_IF EXPR="proceed_ejournals eq '1'" -->
+                		<a href="/cgi-bin/koha/opac-infotrac.pl" class="btn btn-primary">Access </a>
+                	<!-- TMPL_ELSE -->
+                		<a href="/cgi-bin/koha/opac-entitlements.pl" class="btn btn-primary">Buy Now</a>
+                	<!-- /TMPL_IF -->
+                 	</span>
+                 </div>
+                <div class="clear"></div>
+                <div class="span12 aligncenter first-child MT10 relative">
+                <img src="/opac-tmpl/prog/images/new/ad-5.jpg" alt="" />
+                <span class="adbanner_home">
+                	<a href="http://lion.chadwyck.co.uk/" class="btn btn-primary">Browse</a>
+                </span>
+                </div>
+                <div class="clear"></div> 
+                
+                <!-- TMPL_ELSE -->
+                
+                
+                
+              
+                
+ <!-- TMPL_LOOP NAME="BORROWER_INFO" -->              
+ <!-- TMPL_IF NAME="dash"  -->               
+<div id="opac-user-views" class="toptabs">
+
+<div id="tc3" style="display: none;">        
+<!-- TMPL_IF NAME="OPACFinesTab" -->
+
+
+
+
+
+
+
+<!-- FINES BOX -->
+<!-- TMPL_IF NAME="amountoverfive" -->
+            <div id="opac-user-fines"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list-table booktable tablesorter">
+                <tr><th colspan="2"><h2>Fines</h2>
+                
+                
+                
+                <ul class="button_link">
+               <!-- TMPL_LOOP name="BORROWER_INFO" -->           
+		<!-- TMPL_IF EXPR="category_type  eq 'R'" --> 
+        	<li><a href="/cgi-bin/koha/opac-user.pl#opac-user-checkouts">Rented</a></li>
+		<!-- TMPL_ELSE -->  
+            <li><a id="ta1" href="javascript:void(0);" onclick="javascript:showhide('tc1','ta1');">Checked Out</a></li>
+		<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="overdues_count" -->
+			<li><a <a id="ta2" class="active" href="javascript:void(0);" onclick="javascript:showhide('tc2','ta2');" class="">Overdues</a></li>
+		<!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="OPACFinesTab" -->
+        <!-- TMPL_IF NAME="amountoverfive" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountoverzero" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountlessthanzero" --><li><a href="/cgi-bin/koha/opac-user.pl#opac-user-fines">Credits</a></li><!-- /TMPL_IF -->
+        <!-- /TMPL_IF -->
+            
+            
+     <!-- TMPL_IF NAME="waiting_count" -->
+		<!-- TMPL_IF NAME="atdestination" -->
+			<li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Waiting</a></li>
+		<!-- /TMPL_IF -->
+	<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="reserves_count" -->
+			<!-- TMPL_IF EXPR="category_type  eq 'R'" -->    
+		              <li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Rental Queue</a></li>
+			<!-- TMPL_ELSE -->
+            <li><a id="ta4" href="javascript:void(0);" onclick="javascript:showhide('tc4','ta4');">Holds</a></li>		
+			<!-- /TMPL_IF --> 
+		<!-- /TMPL_IF -->
+	                       
+     <!-- /TMPL_LOOP -->                   
+</ul>
+                
+                
+                
+                </th></tr>
+                <tr>
+                    <td>You currently owe fines and charges amounting to:</td>
+                    <td><a href="/cgi-bin/koha/opac-account.pl"><!-- TMPL_VAR NAME="amountoutstanding" --></a></td>
+                </tr>
+            </table></div>
+<!-- /TMPL_IF -->
+
+<!-- TMPL_IF NAME="amountoverzero" -->
+           <div id="opac-user-fines"> <h3>Fines and Charges</h3>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list-table booktable tablesorter">
+                <tr><th colspan="2"><h2>Amount</h2>
+                
+                
+                
+                
+                
+                                <ul class="button_link">
+               <!-- TMPL_LOOP name="BORROWER_INFO" -->           
+		<!-- TMPL_IF EXPR="category_type  eq 'R'" --> 
+        	<li><a href="/cgi-bin/koha/opac-user.pl#opac-user-checkouts">Rented</a></li>
+		<!-- TMPL_ELSE -->  
+            <li><a id="ta1" href="javascript:void(0);" onclick="javascript:showhide('tc1','ta1');">Checked Out</a></li>
+		<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="overdues_count" -->
+			<li><a <a id="ta2" class="active" href="javascript:void(0);" onclick="javascript:showhide('tc2','ta2');" class="">Overdues</a></li>
+		<!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="OPACFinesTab" -->
+        <!-- TMPL_IF NAME="amountoverfive" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountoverzero" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountlessthanzero" --><li><a href="/cgi-bin/koha/opac-user.pl#opac-user-fines">Credits</a></li><!-- /TMPL_IF -->
+        <!-- /TMPL_IF -->
+            
+            
+     <!-- TMPL_IF NAME="waiting_count" -->
+		<!-- TMPL_IF NAME="atdestination" -->
+			<li><a href="javascript:void(0);">Waiting</a></li>
+		<!-- /TMPL_IF -->
+	<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="reserves_count" -->
+			<!-- TMPL_IF EXPR="category_type  eq 'R'" -->    
+		              <li><a href="javascript:void(0);">Rental Queue</a></li>
+			<!-- TMPL_ELSE -->
+            		<li><a id="ta4" href="javascript:void(0);" onclick="javascript:showhide('tc4','ta4');">Holds</a></li>
+			<!-- /TMPL_IF --> 
+		<!-- /TMPL_IF -->
+	                       
+     <!-- /TMPL_LOOP -->                   
+</ul>
+                
+                
+                
+                
+                
+                </th></tr>
+                <tr><td>You currently owe fines and charges amounting to:</td>
+                <td><a href="/cgi-bin/koha/opac-account.pl"><!-- TMPL_VAR NAME="amountoutstanding" --></a></td></tr>
+            </table></div>
+<!-- /TMPL_IF -->
+
+<!-- TMPL_IF NAME="amountlessthanzero" -->
+          <div id="opac-user-fines">  <h3>Credits</h3>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list-table booktable tablesorter">
+            <tr><th colspan="2"><h2>Amount</h2>
+            
+            
+            
+                            <ul class="button_link">
+               <!-- TMPL_LOOP name="BORROWER_INFO" -->           
+		<!-- TMPL_IF EXPR="category_type  eq 'R'" --> 
+        	<li><a href="/cgi-bin/koha/opac-user.pl#opac-user-checkouts">Rented</a></li>
+		<!-- TMPL_ELSE -->  
+            <li><a id="ta1" href="javascript:void(0);" onclick="javascript:showhide('tc1','ta1');">Checked Out</a></li>
+		<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="overdues_count" -->
+			<li><a <a id="ta2" class="active" href="javascript:void(0);" onclick="javascript:showhide('tc2','ta2');" class="">Overdues</a></li>
+		<!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="OPACFinesTab" -->
+        <!-- TMPL_IF NAME="amountoverfive" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountoverzero" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountlessthanzero" --><li><a href="/cgi-bin/koha/opac-user.pl#opac-user-fines">Credits</a></li><!-- /TMPL_IF -->
+        <!-- /TMPL_IF -->
+            
+            
+     <!-- TMPL_IF NAME="waiting_count" -->
+		<!-- TMPL_IF NAME="atdestination" -->
+			<li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Waiting</a></li>
+		<!-- /TMPL_IF -->
+	<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="reserves_count" -->
+			<!-- TMPL_IF EXPR="category_type  eq 'R'" -->    
+		              <li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Rental Queue</a></li>
+			<!-- TMPL_ELSE -->
+            		<li><a id="ta4" href="javascript:void(0);" onclick="javascript:showhide('tc4','ta4');">Holds</a></li>
+			<!-- /TMPL_IF --> 
+		<!-- /TMPL_IF -->
+	                        
+     <!-- /TMPL_LOOP -->                   
+</ul>
+            
+            
+            
+            
+            
+            </th></tr>
+            <tr><td>You have a credit of:</td><td><a href="/cgi-bin/koha/opac-account.pl"><!-- TMPL_VAR NAME="amountoutstanding" --></a></td></tr>
+            </table></div>
+<!-- /TMPL_IF -->
+<!-- /TMPL_IF -->
+    
+<!-- /TMPL_LOOP -->
+
+<!-- TMPL_IF NAME="waiting_count" -->
+<!-- TMPL_IF NAME="atdestination" -->
+    <div id="opac-user-waiting">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list-table booktable tablesorter">
+            <caption>Holds Waiting</caption>
+            
+           <thead> <tr>
+                <th colspan="2">Title</th>
+                <th>Hold date</th>
+                <th>Pick Up Library</th>
+            </tr></thead>
+            <tbody><!-- TMPL_LOOP NAME="WAITING" -->
+                <tr>
+                    <td><img src="<!-- TMPL_VAR NAME="themelang" -->/images/<!-- TMPL_VAR NAME="itemtype" -->.gif" alt="<!-- TMPL_VAR NAME="itemtype" -->" title="<!-- TMPL_VAR NAME="itemtype" -->" /></td>
+                    <td><a href="<!-- TMPL_VAR NAME="seo_url" ESCAPE="html" -->">
+                            <!-- TMPL_VAR NAME="waiting_title" -->
+                        </a><span class="item-details">
+                            <!-- TMPL_VAR NAME="author" -->
+                        </span></td>
+                    <td><!-- TMPL_VAR NAME="reservedate" --></td>
+                    <td><!-- TMPL_IF NAME="atdestination" --><strong>Waiting</strong> at <!-- TMPL_VAR NAME="branch" -->
+                        <!-- TMPL_ELSE -->
+                        In transit from <!-- TMPL_VAR NAME="holdingbranch" --> to <!-- TMPL_VAR NAME="branch" -->
+                        <!-- /TMPL_IF --></td>
+                </tr>
+            <!-- /TMPL_LOOP --></tbody>
+        </table></div>
+    <!-- /TMPL_IF -->
+    <!-- /TMPL_IF -->
+</div>
+<div id="tc1" style="display: block;">
+    <div id="opac-user-checkouts"><!-- TMPL_IF NAME="issues_count" -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list-table booktable tablesorter" id="checkoutst">
+        <tr>
+            <th valign="top" colspan="6">
+            <h2><!-- TMPL_VAR NAME="issues_count" --> Items Checked Out</h2>
+			<ul class="button_link">
+	        <!-- TMPL_LOOP name="BORROWER_INFO" -->           
+			<!-- TMPL_IF EXPR="category_type  eq 'R'" --> 
+	        	<li><a href="/cgi-bin/koha/opac-user.pl#opac-user-checkouts">Rented</a></li>
+			<!-- TMPL_ELSE -->  
+	            <li><a class="active" id="ta1" href="javascript:void(0);" onclick="javascript:showhide('tc1','ta1');">Checked Out</a></li>
+			<!-- /TMPL_IF -->
+			<!-- TMPL_IF NAME="overdues_count" -->
+				<li><a <a id="ta2" href="javascript:void(0);" onclick="javascript:showhide('tc2','ta2');" class="">Overdues</a></li>
+			<!-- /TMPL_IF -->
+	        <!-- TMPL_IF NAME="OPACFinesTab" -->
+	        <!-- TMPL_IF NAME="amountoverfive" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+	        <!-- TMPL_IF NAME="amountoverzero" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+	        <!-- TMPL_IF NAME="amountlessthanzero" --><li><a href="/cgi-bin/koha/opac-user.pl#opac-user-fines">Credits</a></li><!-- /TMPL_IF -->
+	        <!-- /TMPL_IF -->
+	    	<!-- TMPL_IF NAME="waiting_count" -->
+			<!-- TMPL_IF NAME="atdestination" -->
+				<li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Waiting</a></li>
+			<!-- /TMPL_IF -->
+			<!-- /TMPL_IF -->
+				<!-- TMPL_IF NAME="reserves_count" -->
+					<!-- TMPL_IF EXPR="category_type  eq 'R'" -->    
+				              <li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Rental Queue</a></li>
+					<!-- TMPL_ELSE -->
+		            		<li><a id="ta4" href="javascript:void(0);" onclick="javascript:showhide('tc4','ta4');">Holds</a></li>
+					<!-- /TMPL_IF --> 
+				<!-- /TMPL_IF -->
+			                        
+		     <!-- /TMPL_LOOP -->                   
+			</ul>
+		</th>
+        </tr>
+       </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list-table booktable tablesorter" id="myTable">
+      	<thead>
+      	<tr class="table-head">
+		<!-- TMPL_IF NAME="JacketImages" --><th>&nbsp;</th><!-- /TMPL_IF -->
+        <th>Title</th>
+		<!-- TMPL_UNLESS NAME="item-level_itypes" --><th>Item Type</th> <!-- /TMPL_UNLESS -->
+        <th>Call No.</th>
+        <th>Due</th>
+        <!-- TMPL_IF name="OpacRenewalAllowed" -->
+        <!-- TMPL_UNLESS name="patron_flagged" --><th>Renew</th><!-- /TMPL_UNLESS -->
+        <!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="OPACFinesTab" --><th>Fines</th><!-- /TMPL_IF -->
+        </tr>
+        </thead>
+        <tbody>
+		<!-- FIXME: the styling for highlight overrides the overdue red background,
+				so currently we don't use this conditional as the first thing inside the LOOP:
+        <!-- TMPL_UNLESS NAME="__odd__" -->
+           <tr<!-- TMPL_IF NAME="overdue" --> <!-- /TMPL_IF -->>
+        <!-- TMPL_ELSE -->
+           <tr class="<!-- TMPL_IF NAME="overdue" --> <!-- /TMPL_IF -->highlight">
+        <!-- /TMPL_UNLESS -->
+		-->
+		<!-- TMPL_LOOP NAME="ISSUES" -->
+        <!-- TMPL_IF NAME="overdue" --><tr class=""><!-- TMPL_ELSE --><tr><!-- /TMPL_IF -->
+		<td><img width="48" height="75" alt="" src="<!-- TMPL_VAR NAME="image_path" -->" ></td>
+
+                <td><a href="<!-- TMPL_VAR NAME="seo_url" ESCAPE="html" -->"><!-- TMPL_VAR NAME="title" escape="html" --></a><span class="item-details">
+                        <!-- TMPL_VAR NAME="author" -->
+                    </span></td>
+                <!-- TMPL_UNLESS NAME="item-level_itypes" --><td><!-- TMPL_IF NAME="imageurl" --><img src="<!-- TMPL_VAR NAME="imageurl" -->" title="<!-- TMPL_VAR name="description" -->" alt="<!-- TMPL_VAR NAME="description" -->" /><!-- /TMPL_IF --> <!-- TMPL_VAR name="description" --></td><!-- /TMPL_UNLESS -->
+                <td><!-- TMPL_VAR NAME="itemcallnumber" --></td>
+                <!-- TMPL_IF NAME="overdue" -->
+                    <td class="overdue"><!-- TMPL_VAR NAME="date_due" --></td>
+                <!-- TMPL_ELSE -->
+                    <td><!-- TMPL_VAR NAME="date_due" --></td>
+                <!-- /TMPL_IF -->
+                <!-- TMPL_IF name="OpacRenewalAllowed" -->
+                    <!-- TMPL_UNLESS name="patron_flagged" -->
+                    <td><!-- TMPL_IF NAME="status" --><a href="/cgi-bin/koha/opac-renew.pl?from=opac_user&amp;item=<!-- TMPL_VAR NAME="itemnumber" -->&amp;borrowernumber=<!-- TMPL_VAR NAME="borrowernumber" -->">Renew</a> <span class="renewals">(<!-- TMPL_VAR NAME="renewsleft" --> of <!-- TMPL_VAR NAME="renewsallowed" --> renewals remaining)</span>
+                        <!-- TMPL_ELSE -->
+                        Not renewable<!-- TMPL_IF NAME="too_many" --> <span class="renewals">(<!-- TMPL_VAR NAME="renewsleft" --> of <!-- TMPL_VAR NAME="renewsallowed" --> renewals remaining)</span><!-- TMPL_ELSE --><!-- TMPL_IF NAME="on_reserve" --> <span class="renewals">(On hold)</span><!-- /TMPL_IF --><!-- /TMPL_IF --> 
+                        <!-- /TMPL_IF --></td>
+                    <!-- /TMPL_UNLESS -->
+                <!-- /TMPL_IF -->
+<!-- TMPL_IF NAME="OPACFinesTab" -->
+                <td><!-- TMPL_IF NAME="charges" -->Yes<!-- TMPL_ELSE -->No<!-- /TMPL_IF --></td>
+<!-- /TMPL_IF -->
+            </tr>
+        <!-- /TMPL_LOOP -->
+        </tbody>
+        </table>
+       
+		<!-- TMPL_IF name="OpacRenewalAllowed" -->
+		<form action="/cgi-bin/koha/opac-renew.pl" method="post">
+			<input type="hidden" name="from" value="opac_user" />
+			<input type="hidden" name="borrowernumber" value="<!-- TMPL_VAR NAME="borrowernumber" -->" />
+			<!-- TMPL_LOOP NAME="ISSUES" -->
+			<input type="hidden" name="item" value="<!-- TMPL_VAR NAME="itemnumber" -->" />
+			<!-- /TMPL_LOOP -->
+			<!-- TMPL_UNLESS name="patron_flagged" --><br /><input class="btn btn-primary" type="submit" value="Renew All" /><!-- /TMPL_UNLESS -->
+		</form>
+		<!-- /TMPL_IF -->
+    <!-- TMPL_ELSE -->
+    
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list-table booktable tablesorter" id="checkoutst">
+    
+    
+    
+    
+    
+    
+            <tr>
+                    <th valign="top" colspan="6">
+                    <h2><!-- TMPL_VAR NAME="issues_count" --> Items Checked Out</h2>    
+                        
+                  
+                  
+<ul class="button_link">
+        <!-- TMPL_LOOP name="BORROWER_INFO" -->           
+		<!-- TMPL_IF EXPR="category_type  eq 'R'" --> 
+        	<li><a href="/cgi-bin/koha/opac-user.pl#opac-user-checkouts">Rented</a></li>
+		<!-- TMPL_ELSE -->  
+            <li><a class="active" id="ta1" href="javascript:void(0);" onclick="javascript:showhide('tc1','ta1');">Checked Out</a></li>
+		<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="overdues_count" -->
+			<li><a <a id="ta2" href="javascript:void(0);" onclick="javascript:showhide('tc2','ta2');" class="">Overdues</a></li>
+		<!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="OPACFinesTab" -->
+        <!-- TMPL_IF NAME="amountoverfive" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountoverzero" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountlessthanzero" --><li><a href="/cgi-bin/koha/opac-user.pl#opac-user-fines">Credits</a></li><!-- /TMPL_IF -->
+        <!-- /TMPL_IF -->
+            
+            
+     <!-- TMPL_IF NAME="waiting_count" -->
+		<!-- TMPL_IF NAME="atdestination" -->
+			<li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Waiting</a></li>
+		<!-- /TMPL_IF -->
+	<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="reserves_count" -->
+			<!-- TMPL_IF EXPR="category_type  eq 'R'" -->    
+		              <li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Rental Queue</a></li>
+			<!-- TMPL_ELSE -->
+            		<li><a id="ta4" href="javascript:void(0);" onclick="javascript:showhide('tc4','ta4');">Holds</a></li>
+			<!-- /TMPL_IF --> 
+		<!-- /TMPL_IF -->
+	                        
+     <!-- /TMPL_LOOP -->                   
+</ul>
+                  
+                  
+                   
+                  </th>
+                  
+                  </tr>
+    
+    
+    
+            <tr><td>You have nothing checked out</td></tr>
+    </table>
+        
+    <!-- /TMPL_IF --></div>
+    </div>
+    <div id="tc2" style="display: none;">
+<!-- TMPL_IF NAME="overdues_count" -->
+<div id="opac-user-overdues">
+<table id="overduest" width="100%" border="0" cellspacing="0" cellpadding="0" class="list-table booktable tablesorter">
+<tr>
+                    <th valign="top" colspan="6">
+                        <h2>Overdues <span class="count">(<!-- TMPL_VAR NAME="overdues_count" --> total)</span></h2>
+                        
+                        
+
+
+
+<ul class="button_link">
+               <!-- TMPL_LOOP name="BORROWER_INFO" -->           
+		<!-- TMPL_IF EXPR="category_type  eq 'R'" --> 
+        	<li><a href="/cgi-bin/koha/opac-user.pl#opac-user-checkouts">Rented</a></li>
+		<!-- TMPL_ELSE -->  
+            <li><a id="ta1" href="javascript:void(0);" onclick="javascript:showhide('tc1','ta1');">Checked Out</a></li>
+		<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="overdues_count" -->
+			<li> <a id="ta2" class="active" href="javascript:void(0);" onclick="javascript:showhide('tc2','ta2');" class="">Overdues</a></li>
+		<!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="OPACFinesTab" -->
+        <!-- TMPL_IF NAME="amountoverfive" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountoverzero" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountlessthanzero" --><li><a href="/cgi-bin/koha/opac-user.pl#opac-user-fines">Credits</a></li><!-- /TMPL_IF -->
+        <!-- /TMPL_IF -->
+            
+            
+     <!-- TMPL_IF NAME="waiting_count" -->
+		<!-- TMPL_IF NAME="atdestination" -->
+			<li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Waiting</a></li>
+		<!-- /TMPL_IF -->
+	<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="reserves_count" -->
+			<!-- TMPL_IF EXPR="category_type  eq 'R'" -->    
+		              <li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Rental Queue</a></li>
+			<!-- TMPL_ELSE -->
+            		<li><a id="ta4" href="javascript:void(0);" onclick="javascript:showhide('tc4','ta4');">Holds</a></li>
+			<!-- /TMPL_IF --> 
+		<!-- /TMPL_IF -->
+	                        
+     <!-- /TMPL_LOOP -->                   
+</ul>
+                        
+                        
+                        
+                    </th>
+                  </tr>
+<!-- OVERDUES TABLE ROWS -->
+<tr class="table-head">
+<!-- TMPL_IF NAME="JacketImages" --><td>&nbsp;</td><!-- /TMPL_IF -->
+<td>Title</td>
+<!-- TMPL_UNLESS NAME="item-level_itypes" --><td>Item Type</td> <!-- /TMPL_UNLESS -->
+<td>Call No.</td>
+<td>Due</td>
+<!-- TMPL_IF name="OpacRenewalAllowed" -->
+                    <!-- TMPL_UNLESS name="patron_flagged" --><td>Renew</td><!-- /TMPL_IF --><!-- /TMPL_UNLESS -->
+<!-- TMPL_IF NAME="OPACFinesTab" -->
+<td>Fines</td>
+<!-- /TMPL_IF -->
+</tr>
+
+<tbody><!-- TMPL_LOOP NAME="OVERDUES" -->
+<tr>
+
+<td class="jacketcell">
+	<img width="48" height="75" alt="" src="<!-- TMPL_VAR NAME="image_path" -->" >
+</td>
+
+<td><a href="<!-- TMPL_VAR NAME="seo_url" ESCAPE="html" -->"><!-- TMPL_VAR NAME="title" escape="html" --></a> <span class="item-details"><!-- TMPL_VAR NAME="author" --></span></td>
+
+<!-- TMPL_UNLESS NAME="item-level_itypes" --><td><!-- TMPL_IF NAME="imageurl" --><img src="<!-- TMPL_VAR NAME="imageurl" -->" title="<!-- TMPL_VAR name="description" -->" alt="<!-- TMPL_VAR NAME="description" -->" /><!-- /TMPL_IF --> <!-- TMPL_VAR name="description" --></td><!-- /TMPL_UNLESS -->
+<td><!-- TMPL_VAR NAME="itemcallnumber" --></td>
+<td><!-- TMPL_VAR NAME="date_due" --></td>
+                <!-- TMPL_IF name="OpacRenewalAllowed" -->
+                    <!-- TMPL_UNLESS name="patron_flagged" -->
+<td>
+<!-- TMPL_IF NAME="debarred" -->Account Frozen
+<!-- TMPL_ELSIF NAME="status" -->
+<a href="/cgi-bin/koha/opac-renew.pl?from=opac_user&amp;item=<!-- TMPL_VAR NAME="itemnumber" -->&amp;bornum=<!-- TMPL_VAR NAME="borrowernumber" -->">Renew</a> <span class="renewals">(<!-- TMPL_VAR NAME="renewsleft" --> of <!-- TMPL_VAR NAME="renewsallowed" --> renewals remaining)</span>
+<!-- TMPL_ELSIF NAME="onreserve" -->On Reserve
+<!-- TMPL_ELSE -->No renewals left
+<!-- /TMPL_IF -->
+</td><!-- /TMPL_IF --><!-- /TMPL_UNLESS -->
+<!-- TMPL_IF NAME="OPACFinesTab" -->
+<td><!-- TMPL_IF NAME="charges" -->Yes<!-- TMPL_ELSE -->No<!-- /TMPL_IF --></td>
+<!-- /TMPL_IF -->
+</tr>
+<!-- /TMPL_LOOP --></tbody>
+</table></div>
+<!-- /TMPL_IF -->
+    </div>
+
+    <!-- TMPL_IF NAME="reserves_count" -->
+        <div  id="tc4" style="display: none;">
+       <!-- TMPL_IF EXPR="categorytype  eq 'R'" --> 
+       <form action="/cgi-bin/koha/opac-modpriority.pl"  method="post" onsubmit="return validate(this)">
+       <input type="hidden" name="op" value="update" />
+      <!-- /TMPL_IF -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list-table booktable" id="holdst">
+       
+            <thead><tr><th valign="top" colspan="7">
+            
+           
+              <!-- TMPL_IF EXPR="categorytype  eq 'R'" -->
+               <h2>Book rental queue  <span class="count">(<!-- TMPL_VAR NAME="reserves_count" --> total)</span></h2> 
+      
+           <!-- TMPL_ELSE -->              
+         <h2>Holds  <span class="count">(<!-- TMPL_VAR NAME="reserves_count" --> total)</span></h2>
+           <!-- /TMPL_IF -->
+            
+            
+                <ul class="button_link">
+               <!-- TMPL_LOOP name="BORROWER_INFO" -->           
+		<!-- TMPL_IF EXPR="category_type  eq 'R'" --> 
+        	<li><a href="/cgi-bin/koha/opac-user.pl#opac-user-checkouts">Rented</a></li>
+		<!-- TMPL_ELSE -->  
+            <li><a id="ta1" href="javascript:void(0);" onclick="javascript:showhide('tc1','ta1');">Checked Out</a></li>
+		<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="overdues_count" -->
+			<li><a <a id="ta2" href="javascript:void(0);" onclick="javascript:showhide('tc2','ta2');" class="">Overdues</a></li>
+		<!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="OPACFinesTab" -->
+        <!-- TMPL_IF NAME="amountoverfive" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountoverzero" --><li><a id="ta3" href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');" class="">Fines</a></li><!-- /TMPL_IF -->
+        <!-- TMPL_IF NAME="amountlessthanzero" --><li><a href="/cgi-bin/koha/opac-user.pl#opac-user-fines">Credits</a></li><!-- /TMPL_IF -->
+        <!-- /TMPL_IF -->
+            
+            
+     <!-- TMPL_IF NAME="waiting_count" -->
+		<!-- TMPL_IF NAME="atdestination" -->
+			<li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Waiting</a></li>
+		<!-- /TMPL_IF -->
+	<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="reserves_count" -->
+			<!-- TMPL_IF EXPR="category_type  eq 'R'" -->    
+		              <li><a href="javascript:void(0);" onclick="javascript:showhide('tc3','ta3');">Rental Queue</a></li>
+			<!-- TMPL_ELSE -->
+            <li><a class="active" id="ta4" href="javascript:void(0);" onclick="javascript:showhide('tc4','ta4');">Holds</a></li>		
+			<!-- /TMPL_IF --> 
+		<!-- /TMPL_IF -->
+	                       
+     <!-- /TMPL_LOOP -->                   
+</ul>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          
+            <!-- RESERVES TABLE ROWS -->
+
+            </th>
+            
+            
+            <tr class="table-head">
+                <!-- TMPL_IF EXPR="categorytype  eq 'R'" --> 
+                <th>Priority</th>
+                <th>Change Priority</th>                  
+               <!-- /TMPL_IF -->  
+                <th>Title</th>
+                <!-- TMPL_IF EXPR="categorytype  ne 'R'" -->                                
+                <th>Placed On</th>
+                <!-- /TMPL_IF -->  
+                <!-- TMPL_IF EXPR="categorytype  ne 'R'" -->
+		<th>Expires On</th>
+               <th>Pick Up Location</th>
+                <!-- /TMPL_IF -->  
+                <!-- TMPL_IF EXPR="categorytype  eq 'R'" --> 
+                <th>Wait Position</th>
+                <!-- TMPL_ELSE -->               
+		<!-- TMPL_IF NAME="showpriority" -->
+			<th>Priority</th>
+		<!-- /TMPL_IF --><!-- /TMPL_IF -->
+                <!-- TMPL_IF EXPR="categorytype  eq 'R'" --> 
+                  <th>Availability</th>
+                <!-- TMPL_ELSE -->              
+                <th>Status</th>
+                <!-- /TMPL_IF -->  
+                <!-- TMPL_IF EXPR="categorytype  eq 'R'" --> 
+                 <th>Remove</th>
+                 <!-- TMPL_ELSE -->
+		<th>Modify</th>
+                <!-- /TMPL_IF -->  
+            </tr></thead>
+			<tbody>
+            <!-- TMPL_LOOP NAME="RESERVES" -->
+           <!-- TMPL_IF NAME="wait" -->
+                        <!-- TMPL_IF NAME="atdestination" -->
+                            <!-- TMPL_IF NAME="found" -->
+                            <tr class="reserved">
+                            <!-- TMPL_ELSE -->
+                            <tr>
+                        <!-- /TMPL_IF -->
+                        <!-- TMPL_ELSE -->
+                            <tr class="transfered">
+                        <!-- /TMPL_IF -->
+                    <!-- TMPL_ELSE -->
+                            <tr>
+                    <!-- /TMPL_IF -->
+               <!-- TMPL_IF EXPR="categorytype  eq 'R'" --> 
+                <td align="center"><!-- TMPL_VAR NAME="bpriority" --></td>
+                <td style="white-space:nowrap;" align="center"> 
+	        <a title="Move Hold Up" href="/cgi-bin/koha/opac-modrequest.pl?op=move&amp;where=up&amp;borrowernumber=<!-- TMPL_VAR Name="borrowernumber" -->&amp;borrowerpriority=<!-- TMPL_VAR Name="borrowerpriority" -->&amp;date=<!-- TMPL_VAR Name="reservedate" -->">
+			<img src="/intranet-tmpl/<!-- TMPL_VAR NAME='theme' -->/opac-tmpl/prog/images/new/go-up.png" border="0" alt="Go up" />
+                </a>
+
+		<a title="Move Hold To Top" href="/cgi-bin/koha/opac-modrequest.pl?op=move&amp;where=top&amp;borrowernumber=<!-- TMPL_VAR Name="borrowernumber" -->&amp;borrowerpriority=<!-- TMPL_VAR Name="borrowerpriority" -->&amp;date=<!-- TMPL_VAR Name="reservedate" -->">
+                	<img src="/intranet-tmpl/<!-- TMPL_VAR NAME='theme' -->/img/go-top.png" border="0" alt="Go top" />
+                </a>
+
+                <a title="Move Hold To Bottom" href="/cgi-bin/koha/opac-modrequest.pl?op=move&amp;where=bottom&amp;borrowernumber=<!-- TMPL_VAR Name="borrowernumber" -->&amp;borrowerpriority=<!-- TMPL_VAR Name="borrowerpriority" -->&amp;date=<!-- TMPL_VAR Name="reservedate" -->">
+                	<img src="/intranet-tmpl/<!-- TMPL_VAR NAME='theme' -->/img/go-bottom.png" border="0" alt="Go bottom" />
+                </a>
+
+                <a title="Move Hold Down" href="/cgi-bin/koha/opac-modrequest.pl?op=move&amp;where=down&amp;borrowernumber=<!-- TMPL_VAR Name="borrowernumber" -->&amp;borrowerpriority=<!-- TMPL_VAR Name="borrowerpriority" -->&amp;date=<!-- TMPL_VAR Name="reservedate" -->">
+                	<img src="/intranet-tmpl/<!-- TMPL_VAR NAME='theme' -->/img/go-down.png" border="0" alt="Go down" />
+                </a>
+                </td>
+                <!-- /TMPL_IF --> 
+                <td><a href="<!-- TMPL_VAR NAME="seo_url" ESCAPE="html" -->"><!-- TMPL_VAR NAME="reserves_title" --></a>
+                    <!-- TMPL_VAR NAME="author" -->
+                </td>
+                <td align="center">
+                <!-- TMPL_IF EXPR="categorytype  eq 'R'" -->
+                <!-- TMPL_VAR NAME="priority" --> 
+                <!-- TMPL_ELSE -->
+                <!-- TMPL_VAR NAME="reservedate" -->
+                <!-- /TMPL_IF --> 
+                </td>
+                <!-- TMPL_IF EXPR="categorytype  ne 'R'" -->
+		<td><!-- TMPL_IF NAME="expirationdate" --><!-- TMPL_VAR NAME="expirationdate" --><!-- TMPL_ELSE -->Never Expires<!-- /TMPL_IF --></td>
+                <td><!-- TMPL_VAR NAME="branch" --></td>
+                <!-- /TMPL_IF -->
+				<!-- TMPL_IF NAME="showpriority" -->
+				<td><!-- TMPL_VAR NAME="priority" --> </td>
+				<!-- /TMPL_IF -->
+                <td align="center">
+                    <!-- TMPL_IF NAME="wait" -->
+                        <!-- TMPL_IF NAME="atdestination" -->
+                            <!-- TMPL_IF NAME="found" -->
+                            Item waiting at <b> <!-- TMPL_VAR NAME="wbrname" --></b>
+                            <input type="hidden" name="pickup" value="<!-- TMPL_VAR NAME="wbrcd" -->" />
+                            <!-- TMPL_ELSE -->
+                            Item waiting to be pulled from <b> <!-- TMPL_VAR NAME="wbrname" --></b>
+                        <!-- /TMPL_IF -->
+                        <!-- TMPL_ELSE -->
+                            Item in transit to <b> <!-- TMPL_VAR NAME="wbrname" --></b> <input type="hidden" name="pickup" value="<!-- TMPL_VAR NAME="wbrcd" -->" />
+                        <!-- /TMPL_IF -->
+                    <!-- TMPL_ELSE -->
+                            <!-- TMPL_IF NAME="intransit" -->
+                                Item in transit from <b> <!-- TMPL_VAR NAME="frombranch" --></b> since 
+                                <!-- TMPL_VAR NAME="datesent" -->
+                            <!-- TMPL_ELSE --><!-- TMPL_IF EXPR="categorytype  eq 'R'" -->
+                            <!-- TMPL_IF NAME="itemnumber" -->
+                               <div style="width: 110px; text-align: left;"><small><span style="color: rgb(85, 163, 43);">Available</span></small></div>
+<div class="availability_bar" style="background-color: rgb(85, 163, 43);">&nbsp;</div>
+                          <!-- TMPL_ELSE -->  
+                               <div style="width: 110px; text-align: left;"><small><span style="color: rgb(174, 17, 0);">In circulation</span></small></div>
+<div style="background-color: rgb(174, 17, 0);" class="availability_bar">&nbsp;</div>
+                        <!-- /TMPL_IF -->
+                              <!-- TMPL_ELSE -->  
+                              Pending
+                                <!-- /TMPL_IF -->
+                            <!-- /TMPL_IF -->
+                    <!-- /TMPL_IF -->
+                </td>
+		<td align="center">
+               <!-- TMPL_IF EXPR="categorytype  eq 'R'" -->
+<a href="/cgi-bin/koha/opac-modrequest.pl?op=cancel&amp;biblionumber=<!-- TMPL_VAR NAME="biblionumber" -->&amp;borrowernumber=<!-- TMPL_VAR Name="borrowernumber" -->" onclick="return confirmDelete(MSG_CONFIRM_DELETE_HOLD);">
+                	<img src="/intranet-tmpl/<!-- TMPL_VAR NAME='theme' -->/img/x.png" border="0" alt="Cancel" />
+                <!-- TMPL_ELSE --> 
+		<!-- TMPL_IF NAME="cancelable" -->
+			<form action="/cgi-bin/koha/opac-modrequest.pl" method="post">
+			<input type="hidden" name="biblionumber" value="<!-- TMPL_VAR NAME="biblionumber" -->" />
+			<input type="submit" name="submit" class="icon delete cancel" value="Cancel" onclick="return confirmDelete(MSG_CONFIRM_DELETE_HOLD);" /></form>
+		<!-- TMPL_ELSE -->
+			&nbsp;
+		<!-- /TMPL_IF -->
+       		<!-- /TMPL_IF -->
+		</td>
+
+            </tr>
+            <!-- /TMPL_LOOP -->
+	</tbody>
+        </table>
+ </form>
+    </div>
+    <!-- /TMPL_IF -->
+    </div>
+    <!-- /TMPL_UNLESS -->            
+                
+                                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <!-- /TMPL_IF -->
+            </div>
+            <!-- end rightcolumn -->
+        </div>
+        <!-- end container main -->
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- /TMPL_IF -->
+<!-- /TMPL_IF -->
+<!-- end container -->
+
+
+<script type="text/javascript">
+$(document).ready(function() 
+	    { 
+	        $("#myTable").tablesorter(); 
+	    } 
+	); 
+</script>
+<!-- TMPL_INCLUDE NAME="opac-bottom.inc" -->
+
+
+                       

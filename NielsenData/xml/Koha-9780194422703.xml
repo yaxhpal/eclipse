@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"
+    xmlns="http://www.loc.gov/MARC21/slim">
+
+  <leader>00593nam a2200193Ia 4500</leader>
+  <controlfield tag="001">KD000190</controlfield>
+  <controlfield tag="008">110516s9999    xx            000 0 und d</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9780194422703</subfield>
+  </datafield>
+  <datafield tag="082" ind1=" " ind2=" ">
+    <subfield code="a">428.24 JAN</subfield>
+  </datafield>
+  <datafield tag="100" ind1=" " ind2=" ">
+    <subfield code="a">Willis, Jane</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">English Through Music</subfield>
+    <subfield code="b">Jane Willis; Anice Paterson</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">United Kingdom</subfield>
+    <subfield code="b">Oxford University Press</subfield>
+    <subfield code="c">15-May-08</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="g">268</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">L</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Mixed media product</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2=" ">
+    <subfield code="a">ELT: learning material &amp; coursework</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="a">ENG</subfield>
+    <subfield code="b">ENGL</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="7">0</subfield>
+    <subfield code="v">11.5</subfield>
+    <subfield code="4">0</subfield>
+    <subfield code="0">0</subfield>
+    <subfield code="6">428_240000000000000_JAN</subfield>
+    <subfield code="9">269433</subfield>
+    <subfield code="1">0</subfield>
+    <subfield code="o">428.24 JAN</subfield>
+    <subfield code="d">2011-05-16</subfield>
+  </datafield>
+  <datafield tag="999" ind1=" " ind2=" ">
+    <subfield code="c">250060</subfield>
+    <subfield code="d">250060</subfield>
+  </datafield>
+</record>

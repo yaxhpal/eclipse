@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"
+  xmlns="http://www.loc.gov/MARC21/slim">
+
+<record>
+  <leader>01451pam a2200229a 44500</leader>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9780748641345</subfield>
+  </datafield>
+  <datafield tag="082" ind1=" " ind2=" ">
+    <subfield code="a">821.8 ANN</subfield>
+  </datafield>
+  <datafield tag="100" ind1=" " ind2=" ">
+    <subfield code="a">Anna Barton</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Alfred Lord Tennyson's 'In Memoriam': A Reading Guide</subfield>
+    <subfield code="c">"Barton, Anna"</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">United Kingdom</subfield>
+    <subfield code="b">Edinburgh University Press</subfield>
+    <subfield code="c">05/03/2012</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">224</subfield>
+    <subfield code="b">Paperback</subfield>
+  </datafield>
+  <datafield tag="365" ind1=" " ind2=" ">
+    <subfield code="a">"INR</subfield>
+    <subfield code="b">2,047.12"</subfield>
+  </datafield>
+  <datafield tag="440" ind1=" " ind2=" ">
+    <subfield code="v">Reading Guides to Long Poems</subfield>
+  </datafield>
+  <datafield tag="505" ind1=" " ind2=" ">
+    <subfield code="a">Literary studies: poetry &amp; poets</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">"Introduces Tennyson's famous elegy to first-time readers, students and teachers of the poem. In Memoriam is one of the most famous and influential poems of the 19th century. Composed over nearly three decades and spanning over 100 sections, it is one of the longest elegies in the English language. It is at once a deeply personal description of grief and a wide-ranging discussion of its age. This guide provides: * The full text of the poem; * Information about its cultural, historical and literary contexts; * Four different reading strategies for approaching the text; * Suggested seminar activities, assessments and module outlines for teachers and lecturers"</subfield>
+  </datafield>-*   
+  <datafield tag="521" ind1=" " ind2=" ">
+    <subfield code="a">Tertiary Education (US: College); Professional &amp; Vocational</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2=" ">
+    <subfield code="a"> Literary studies: c 1800 to c 1900</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2=" ">
+    <subfield code="a">Literary studies: poetry &amp; poets</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2=" ">
+    <subfield code="a">English</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2=" ">
+    <subfield code="a"> Tennyson, Alfred Tennyson"</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2=" ">
+    <subfield code="a">"Tennyson, Alfred Tennyson - Criticism and interpretation</subfield>
+  </datafield>
+  <datafield tag="906" ind1=" " ind2=" ">
+    <subfield code="a">234</subfield>
+    <subfield code="b">156</subfield>
+  </datafield>
+</record>
+</collection>

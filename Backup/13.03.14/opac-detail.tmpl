@@ -1,0 +1,680 @@
+<!-- TMPL_INCLUDE NAME="doc-head-open.inc" --><!-- TMPL_IF NAME="LibraryNameTitle" --><!-- TMPL_VAR NAME="LibraryNameTitle" --><!-- TMPL_ELSE -->Koha Online<!-- /TMPL_IF --> Catalog &rsaquo; Details for: <!-- TMPL_VAR NAME="title" escape="html" --><!-- TMPL_LOOP NAME="subtitle" -->, <!-- TMPL_VAR NAME="subfield" --><!-- /TMPL_LOOP -->
+<!-- TMPL_INCLUDE NAME="doc-head-close.inc" -->
+<script type="text/javascript" src="<!-- TMPL_VAR name="themelang" -->/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+<script type="text/JavaScript" language="JavaScript">
+//<![CDATA[
+     $(document).ready(function() { 
+        $('#bibliodescriptions > ul').tabs();
+<!-- TMPL_IF NAME="opacuserlogin" --><!-- TMPL_IF NAME="loggedinusername" --><!-- TMPL_IF NAME="TagsEnabled" -->$("#tagform").hide();
+        $("#addtagl").show();
+        $("#addtagl a").click(function(){
+            $("#addtagl").hide();
+            $("#tagform, #tagform a").show();
+            return false;
+        });
+        $("#tagform a").click(function(){
+            $("#addtagl").show();
+            $("#tagform").hide();
+            return false;
+        });<!-- /TMPL_IF --><!-- /TMPL_IF --><!-- /TMPL_IF -->
+        $("#holdingst").tablesorter({<!-- TMPL_IF EXPR="dateformat eq 'metric'" -->
+    dateFormat: 'uk',<!-- /TMPL_IF -->
+            widgets : ['zebra'],
+            sortList: [[0,0]]
+        });<!-- TMPL_IF NAME="GoogleJackets" -->
+        KOHA.Google.GetCoverFromIsbn();<!-- /TMPL_IF --><!-- TMPL_IF NAME="TagsEnabled" -->
+        $(".tagbutton").click(KOHA.Tags.add_tag_button);<!-- /TMPL_IF -->
+		<!-- TMPL_IF NAME="opacbookbag" -->$("a.print").parent().after("<li><a class=\"addtocart\" href=\"#\" onclick=\"addRecord('"+$("input[name=bib]").val()+"'); return false;\">"+_("Add to Your Cart")+"<\/a><\/li>");
+<!-- /TMPL_IF -->});
+
+YAHOO.util.Event.onContentReady("furtherm", function () {
+    $("#furtherm").css("display","block").css("visibility","hidden");
+	$("#furthersearches").parent().show();
+	var furthersearchesMenu = new YAHOO.widget.Menu("furtherm");
+		furthersearchesMenu.render();
+		furthersearchesMenu.cfg.setProperty("context", ["furthersearches", "tr", "br"]);
+		furthersearchesMenu.subscribe("beforeShow",positionfurthersearchesMenu);
+		furthersearchesMenu.subscribe("show", furthersearchesMenu.focus);
+        function positionfurthersearchesMenu() {
+                    furthersearchesMenu.align("tr", "br");
+		}
+		YAHOO.util.Event.addListener("furthersearches", "click", furthersearchesMenu.show, null, furthersearchesMenu);
+		YAHOO.widget.Overlay.windowResizeEvent.subscribe(positionfurthersearchesMenu);
+ });
+	
+//]]>
+
+
+
+function Check(f) {
+	//alert(f.mobile.value);
+	var ok=1;
+	var _alertString="";
+	var alertString2;
+	
+	//alert (f.star2.value);
+
+        
+	if (f.name.value.length==0) { 
+		_alertString += "\n- " + _("Name is missing");
+	}
+	
+	if (f.location.value.length==0) { 
+		_alertString += "\n- " + _("Location is missing");
+	}
+	
+	if (f.content.value.length==0) { 
+		_alertString += "\n- " + _("Review is missing");
+	}
+	
+	if (f.code.value.length==0) { 
+		_alertString += "\n- " + _("Captcha Code is missing");
+	}
+	
+	
+
+	
+	var rates = document.getElementsByName('star2');
+	//alert(rates[0].value);
+	var rate_value;
+	for(var i = 0; i < rates.length; i++){
+	    if(rates[i].checked){
+	        rate_value = rates[i].value;
+	    }
+	}
+	//alert(rate_value);
+	if (rate_value == undefined) { 
+		_alertString += "\n- " + _("Rating is missing");
+	}
+	
+	//alert("I am here.4!");
+        if (_alertString.length==0) { 
+			
+        	document.Aform.submit();
+	}  else {
+					
+                    alertString2  = _("Your review is not submitted because of the following problem(s)");
+                    alertString2 += "\n------------------------------------------------------------------------------------\n";
+                    alertString2 += _alertString;
+                    alert(alertString2);
+            }
+	
+    }
+
+
+
+
+
+
+
+
+</script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+    var jQuery_1_9_1 = $.noConflict(true);
+    </script>
+ 
+ <script>
+function showlist(id){
+document.getElementById(id).style.display ='block';
+}
+function hidelist(id){
+document.getElementById(id).style.display ='none';
+}
+
+
+</script>
+
+
+<!-- TMPL_IF NAME="opacuserlogin" --><!-- TMPL_IF NAME="loggedinusername" --><!-- TMPL_IF NAME="TagsEnabled" --><style type="text/css">
+    #addtagl { display: none; }
+</style><!-- /TMPL_IF --><!-- /TMPL_IF --><!-- /TMPL_IF -->
+<!-- TMPL_IF NAME="OPACXSLTDetailsDisplay" --><script type="text/javascript">
+    var GB_ROOT_DIR = "/opac-tmpl/prog/en/lib/greybox/";                               
+</script>
+<script type="text/javascript" src="/opac-tmpl/prog/en/lib/greybox/AJS.js"></script>
+<script type="text/javascript" src="/opac-tmpl/prog/en/lib/greybox/AJS_fx.js"></script>
+<script type="text/javascript" src="/opac-tmpl/prog/en/lib/greybox/gb_scripts.js"></script>
+<link href="/opac-tmpl/prog/en/lib/greybox/gb_styles.css" rel="stylesheet" type="text/css" />
+<!-- /TMPL_IF -->
+
+    <meta name="title" content="<!-- TMPL_VAR NAME="title" escape="html" --> - isbn: <!-- TMPL_VAR NAME="isbn" --> British Council Library"/>
+	<meta name="description" content="<!-- TMPL_VAR NAME="meta_description" -->">
+
+</head>
+<body id="opac-detail">
+<!-- TMPL_VAR NAME="mayank" -->
+<!--TMPL_INCLUDE NAME="masthead.inc" -->
+<!-- start container -->
+<div class="container contentarea">
+	<div class="row-fluid">
+    	<!-- start leftcol -->
+        <div class="span3 leftcol MB10 first-child">
+        	<!-- start category -->
+        	
+        	<!-- TMPL_IF NAME="opacfacets" -->
+        	
+        	<!-- If facets are present, populate facets inc -->
+        	
+        	<div class="leftcolumn">
+				<!-- TMPL_INCLUDE NAME="opac-facets.inc" -->
+        	
+        	
+        	<!-- TMPL_ELSE -->
+        	
+        	
+        	<!-- If facets are not present, populate the static links -->
+     	<!-- start category -->
+            <div class="category cnborder">
+            	<h2>Categories</h2>
+                <h4>Library Books</h4>
+                <ul>
+                            <li><a href="/subject/fiction">Fiction</a></li>
+<li><a href="/subject/short-stories">Short stories</a></li>
+<li><a href="/subject/drama">Drama</a></li>
+<li><a href="/subject/poetry">Poetry</a></li>
+<li><a href="/subject/graphic-novels">Graphic novels</a></li>
+<li><a href="/subject/literary-criticism">Literary criticism</a></li>
+<li><a href="/subject/learn-and-teach-english">Learn and Teach English</a></li>
+<li><a href="/subject/management">Management</a></li>
+<li><a href="/subject/self-development">Self-development</a></li>
+<li><a href="/junior-books">Junior Books</a></li>
+                             <a class="catpopup" href="#catpopup"><i class="icon-play-circle"></i> Show all</a>
+                        </ul>
+                        
+                        
+                <h4>CDs / DVDs</h4>
+                <ul>
+                        <li><a href="/subject/dvd/drama">Drama</a></li>
+                        <li><a href="/subject/dvd/documentary">Documentary</a></li>
+                        <li><a href="/subject/dvd/horror">Horror</a></li>
+                        <li><a href="/subject/dvd/thriller">Thriller</a></li>
+                        <li><a href="/subject/dvd/comedy">Comedy</a></li>
+                        <li><a href="/subject/dvd/kids">Kids</a></li>
+                        <li><a href="/subject/dvd/sports">Sports</a></li>
+                        <li><a href="/subject/dvd/music">Music</a></li>
+                        
+                        
+      
+                </ul>
+               
+					
+					
+				
+			
+			<h4>Online Academic Books</h4>	
+			<ul>
+<li><a href="/subject/ebrary/anthropology">Anthropology</a></li>
+<li><a href="/subject/ebrary/business-economics">Business & Economics</a></li>
+<li><a href="/subject/ebrary/computers-it">Computers & IT</a></li>
+<li><a href="/subject/ebrary/education">Education</a></li>
+<li><a href="/subject/ebrary/Engineering-technology">Engineering & Technology</a></li>
+
+              <a class="catpopup1" href="#catpopup1"><i class="icon-play-circle"></i> Show all</a>
+			</ul>
+				
+				
+				
+				<a href="/cgi-bin/koha/opac-infotrac.pl" class="sepcial-link">E Journals</a>
+            </div>
+        	
+        	
+        	
+        	
+   <div style='display:none;'>
+		<div id='catpopup' class="cat-lightbox">
+        <div class="row-fluid">
+        <h3>Categories</h3>
+    		<div class="span4 first-child">
+    	
+       <div class="category-up">
+        <ul>
+ <li><a href="/subject/fiction">Fiction</a></li>
+<li><a href="/subject/short-stories">Short stories</a></li>
+<li><a href="/subject/drama">Drama</a></li>
+<li><a href="/subject/poetry">Poetry</a></li>
+<li><a href="/subject/graphic-novels">Graphic novels</a></li>
+<li><a href="/subject/literary-criticism">Literary criticism</a></li>
+<li><a href="/subject/learn-and-teach-english">Learn and Teach English</a></li>
+<li><a href="/subject/management">Management</a></li>
+<li><a href="/subject/self-development">Self-development</a></li>
+   <li><a href="/subject/Civic-n-landscape-art">Civic & Landscape art</a></li>
+<li><a href="/subject/architecture">Architecture</a></li>
+        				
+    <li><a href="/subject/sculpture">Sculpture</a></li>
+                      
+                            
+       </ul>
+        	
+            </div>
+            </div> <div class="span4">
+    	
+        <div class="category-up">
+        <ul>
+        
+<li><a href="/subject/drawing n decorative-arts">Drawing & Decorative arts</a></li>  
+<li><a href="/subject/painting ">Painting </a></li>
+<li><a href="/subject/graphic-arts">Graphic arts</a></li>
+<li><a href="/subject/photography ">Photography </a></li>
+<li><a href="/subject/music">Music</a></li>
+<li><a href="/subject/Recreational-n-performing-arts">Recreational & Performing arts</a></li>
+<li><a href="/subject/travel-and-tourism">Travel and Tourism</a></li>
+<li><a href="/subject/history">History</a></li>
+<li><a href="/subject/food-and-drink">Food and drink</a></li>
+<li><a href="/subject/popular-culture">Popular culture</a></li>
+
+  	<li><a href="/subject/sport">Sport</a></li>
+<li><a href="/subject/biographies">Biographies</a></li>                      
+                            
+                            </ul>
+        	
+          </div>
+            </div><div class="span4">
+    	
+       <div class="category-up">
+        <ul>
+          
+        
+<li><a href="/subject/mathematics">Mathematics</a></li>
+<li><a href="/subject/astronomy">Astronomy</a></li>
+<li><a href="/subject/physics">Physics</a></li>
+<li><a href="/subject/chemistry">Chemistry</a></li>
+<li><a href="/subject/geology">Geology</a></li>
+<li><a href="/subject/life-sciences">Life Sciences</a></li>
+<li><a href="/subject/politics/political-science">Politics/Political Science</a></li>
+<li><a href="/subject/popular-economics">Popular economics</a></li>
+<li><a href="/subject/public-administration">Public Administration</a></li>
+<li><a href="/subject/social-services">Social Services</a></li>
+<li><a href="/subject/education">Education</a></li>
+<li><a href="/subject/media">Media</a></li>				
+        					
+        					
+        					</ul>
+        					
+          </div>
+            </div>
+        </div>
+    </div> 
+    
+    
+    		<div id='catpopup1' class="cat-lightbox">
+        <div class="row-fluid">
+        <h3>Online Academic Books</h3>
+    		<div class="span6 first-child">
+    	
+       <div class="category-up">
+        <ul>
+        
+        
+		<li><a href="/subject/ebrary/anthropology">Anthropology</a></li>
+<li><a href="/subject/ebrary/business-economics">Business & Economics</a></li>
+<li><a href="/subject/ebrary/computers-it">Computers & IT</a></li>
+<li><a href="/subject/ebrary/education">Education</a></li>
+<li><a href="/subject/ebrary/Engineering-technology">Engineering & Technology</a></li>
+<li><a href="/subject/ebrary/fine-arts">Fine Arts</a></li>
+<li><a href="/subject/ebrary/history">History</a></li>
+
+                            
+                            
+       </ul>
+        	
+            </div>
+            </div> <div class="span6">
+    	
+        <div class="category-up">
+        <ul>
+                            
+                          <li><a href="/subject/ebrary/language-literature">Language & Literature</a></li>
+<li><a href="/subject/ebrary/law">Law</a></li>
+<li><a href="/subject/ebrary/Life-sciences">Life Sciences</a></li>
+<li><a href="/subject/ebrary/medicine">Medicine</a></li>
+<li><a href="/subject/ebrary/physical-sciences">Physical Sciences</a></li>
+<li><a href="/subject/ebrary/psychology">Psychology</a></li>
+<li><a href="/subject/ebrary/religion">Religion</a></li>
+<li><a href="/subject/ebrary/social-sciences">Social Sciences</a></li>
+                            
+                            
+                            </ul>
+        	
+          </div>
+            </div>
+        </div>
+    </div>
+    
+  
+    </div> 
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	<!-- /TMPL_IF -->
+        	
+        	
+            
+            <!-- end category -->
+            <div class="clear MT10"></div>
+          
+            
+            <div class="aligncenter MB10 MT10 addcode">
+           
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=412275375572173";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=412275375572173";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+<div class="fb-like" data-href="https://www.facebook.com/BritishCouncilindia" data-width="220" data-height="270" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+<div class="fb-activity" data-site="britishcouncil.in" data-action="likes, recommends" data-width="220" data-height="270" data-colorscheme="light" data-header="true"></div>
+                    </div>
+        </div>
+        <!-- end leftcol -->
+        <!-- start rightcol -->
+        <div class="span9 rightcol">
+        	<!-- start cnborder -->
+            <div class="cnborder">
+            	<!-- prodetail -->
+              <!-- TMPL_IF name="enableNielsen" -->
+              <!-- TMPL_INCLUDE NAME="nielsen-prodetails.inc" -->
+              <!-- TMPL_ELSE -->
+              <!-- TMPL_INCLUDE NAME="marc-prodetails.inc" -->
+              <!-- /TMPL_IF --> 
+			</div>
+
+<div class="yui-u">
+<div class="container">
+
+
+<!-- TMPL_IF name="OPACSearchForTitleIn" -->
+<div id="furtherm" class="yuimenu">
+<div class="bd">
+<h4>Search for this title in:</h4>
+<ul class="first-of-type">
+
+<!-- TMPL_VAR NAME="OPACSearchForTitleIn" escape="none" -->
+
+</ul>
+</div>
+</div>
+<!-- /TMPL_IF -->
+<!--
+        <div id="export" class="detailtagcell">
+        <form method="get" action="/cgi-bin/koha/opac-export.pl">
+        <label for="format">Save Record:</label>
+        <select name="format" id="format">
+        <option value="">-- Choose Format --</option>
+        <option value="bibtex">BIBTEX</option>
+        <option value="dc">Dublin Core (XML)</option>
+        <option value="marcxml">MARCXML</option>
+        <option value="marc8">MARC (non-Unicode/MARC-8)</option>
+        <option value="utf8">MARC (Unicode/UTF-8)</option>    
+        <option value="mods">MODS (XML)</option>
+        <option value="ris">RIS</option>
+		</select><input type="hidden" name="op" value="export" /><input type="hidden" name="bib" value="<!-- TMPL_VAR NAME="biblionumber" -->" />
+<input type="submit" name="save" value="Go" /></form>
+        </div>
+-->
+</div>
+
+
+
+
+
+<!-- TMPL_IF NAME="LibraryThingForLibrariesID" --> 
+<!-- TMPL_IF NAME="using_https" -->
+<script src="https://ltfl.librarything.com/forlibraries/widget.js?systype=koha&amp;id=<!--TMPL_VAR NAME="LibraryThingForLibrariesID" -->" type="text/javascript"></script>
+<noscript>This page contains enriched content visible when JavaScript is enabled or by clicking 
+<a href="https://www.librarything.com/forlibraries/noscript.php?id=<!-- TMPL_VAR NAME="LibraryThingForLibrariesID" -->&amp;accessibility=1">here</a>.</noscript>
+<!-- TMPL_ELSE -->
+<script src="http://ltfl.librarything.com/forlibraries/widget.js?systype=koha&amp;id=<!--TMPL_VAR NAME="LibraryThingForLibrariesID" -->" type="text/javascript"></script>
+<noscript>This page contains enriched content visible when JavaScript is enabled or by clicking 
+<a href="http://www.librarything.com/forlibraries/noscript.php?id=
+<!-- TMPL_VAR NAME="LibraryThingForLibrariesID" -->&amp;accessibility=1">here</a>.</noscript>
+<!-- /TMPL_IF -->
+<!-- /TMPL_IF -->
+
+
+
+
+
+
+
+
+
+
+
+
+               
+               <!-- prodetail -->
+               <!-- start bookslider2 -->
+               <!-- TMPL_IF NAME="show_by_sub" -->
+            	<div class="bookslider2">
+            	<h2>Recommended books by subject</h2>
+                <div class="clear"></div>
+            	<ul>
+            	<!-- TMPL_LOOP NAME="recc" -->
+                	<li class="view-sixth">
+                        <div class="imgb"><img class="imgsld" alt="" src="<!-- TMPL_VAR NAME="image_path" -->">
+                        <div class="mask">
+                            <h2>
+                            <!-- TMPL_VAR NAME="subtitle" -->
+                            </h2>                       
+                            <a href="/cgi-bin/koha/opac-detail.pl?biblionumber=<!-- TMPL_VAR NAME="biblionumber" -->" class="btn">Read More</a>
+                        </div> 
+                        </div>
+                    </li>
+                    <!-- /TMPL_LOOP -->
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <!-- /TMPL_IF -->
+            <!-- end bookslider2 -->
+            <!-- start bookslider2 -->
+            <!-- TMPL_IF NAME="show_by_auth" -->
+            <div class="bookslider2">
+            	<h2>Recommended books by Author</h2>
+                <div class="clear"></div>
+            	<ul>
+            	<!-- TMPL_LOOP NAME="by_auth" -->
+                	<li class="view-sixth">
+                        <div class="imgb"><img class="imgsld" alt="" src="<!-- TMPL_VAR NAME="image_path" -->">
+                        <div class="mask">
+                            <h2><!-- TMPL_VAR NAME="subtitle" --></h2>                       
+                            <a href="/cgi-bin/koha/opac-detail.pl?biblionumber=<!-- TMPL_VAR NAME="biblionumber" -->" class="btn">Read More</a>
+                        </div> </div>
+                    </li>
+                 <!-- /TMPL_LOOP -->
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <!-- /TMPL_IF -->
+            <!-- end bookslider2 -->
+            
+            <!-- end cnborder -->
+            <div class="clear"></div>
+
+
+<!-- INSERT User REVIEWS CODE FROM HERE -->
+
+<!-- TMPL_IF NAME="reviewson" -->
+
+<!-- TMPL_IF NAME="reviews" -->
+        
+            
+ <div class="clear"></div>
+            <div class="reviewuser cnborder MT10">
+            <div class="span6 first-child">	<h2 id="Review"  name="Review">Reviews</h2></div>
+           <div class="span6 MT10">
+           
+           <div class="span6 first-child"> <span class="avrg">Average rating:</span></div><div class="ratings span6">
+                      <div class="rating-box"><div style="width:<!-- TMPL_VAR NAME="rating_percenatage" -->%" class="rating"></div> </div>
+                               
+                            </div></div>
+                             <div class="clear alrt"></div>
+                <div class="rows">
+
+  
+<!-- TMPL_LOOP NAME="reviews" -->
+  <div class="area">
+    <div class="review_body">
+      <p><!-- TMPL_VAR NAME="review" ESCAPE=0 --></p>
+    </div>
+    <div class="infoPanel">
+      <div class="ratings span3 first-child">
+         <div class="rating-box"><div class="rating" style="width:<!-- TMPL_VAR NAME="rating" -->%"></div> </div>
+   </div>
+   
+      <div class="poster span3"><a href=""><!-- TMPL_VAR NAME="name" --></a></div>
+      <div class="location span3"> <!-- TMPL_VAR NAME="location" --></div>
+      <div class="date span3"><!-- TMPL_VAR NAME="datereviewed" --></div>
+    </div>
+  </div>
+   <!-- /TMPL_LOOP -->
+</div>
+ <div class="clear "></div>
+            <!--div class="aligncenter MT10 MB10" > <button type="button" class="btn  btn-primary">View all reviews (9)</button>  </div-->
+            </div>
+<!-- /TMPL_IF --> 
+<!-- Closing if there are reviews -->
+
+
+ <div class="clear"></div>
+ 
+ <!-- TMPL_IF NAME="submitted"-->
+ <div class="green-mesg"><p>Thank you.! your review has been submitted, it will reflect only after it has been approved.</p></span></div>
+ <!-- TMPL_ELSE -->
+ 	<!-- TMPL_IF NAME="error_in_captcha"-->
+ 		<div class="pink-mesg"><p>Your review is not submitted because of some error in captcha, kindly refresh and try again</p></span></div>
+ 	<!-- /TMPL_IF -->
+ <!-- TMPL_UNLESS NAME="check_if_reviewed" -->
+            <div class="reviewform cnborder MT10">
+            	<h2 name="Write-review" id="Write-review">Write a review</h2>
+                <form method="post" action="/cgi-bin/koha/opac-detail.pl?biblionumber=<!-- TMPL_VAR NAME="biblionumber"-->">
+                <input type="hidden" name="biblionumber" value="<!-- TMPL_VAR NAME="biblionumber"-->">
+                <input type="hidden" name="sreview" value="1">
+                <input type="hidden" name="mdhash" value="<!-- TMPL_VAR NAME="mdhash"-->">
+                	<div class="row-fluid">
+                	<div class="span6 first-child">
+                            <label>Name<strong>*</strong></label>
+                            <input class="inputfield" name="name" type="text" placeholder="">
+                            <div class="validation-advice">This is a required field.</div>
+                            <div class="clear"></div>
+                            <label>Location<strong>*</strong></label>
+                            <input class="inputfield" name="location" type="text" placeholder="">
+                            
+                            <div class="clear"></div>
+                           
+                             
+		                        
+                        </div>
+                        <div class="span6">
+                            <label>Review<strong>*</strong></label>
+                            <textarea class="inputfield" name="content" cols="4" rows="8"></textarea>
+                            
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                      <div class="clear MT10"></div>
+                 <h5> Rate<strong>*</strong></h5>
+                              
+		                        
+		                        
+		                        <table id="product-review-table" class="data-table">
+                        <colgroup><col>
+                        <col width="1">
+                        <col width="1">
+                        <col width="1">
+                        <col width="1">
+                        <col width="1">
+                        </colgroup><thead>
+                            <tr class="first last">
+                                <th>&nbsp;</th>
+                                <th><span class="nobr">1 star</span></th>
+                                <th><span class="nobr">2 stars</span></th>
+                                <th><span class="nobr">3 stars</span></th>
+                                <th><span class="nobr">4 stars</span></th>
+                                <th><span class="nobr">5 stars</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                               
+                            <tr class="last odd">
+                                <th>Rating</th>
+                                    <td class="value"><input type="radio" class="radio" value="1" id="Value_1" name="star2"></td>
+                                    <td class="value"><input type="radio" class="radio" value="2" id="Value_2" name="star2"></td>
+                                    <td class="value"><input type="radio" class="radio" value="3" id="Value_3" name="star2"></td>
+                                    <td class="value"><input type="radio" class="radio" value="4" id="Value_4" name="star2"></td>
+                                    <td class="value last"><input type="radio" class="radio" value="5" id="Value_5" name="star2"></td>
+                                </tr>
+                        </tbody>
+                    </table>
+                    <div class="clear"></div>
+                  <div class="span12 first-child MB10 MT10">
+                 <div class="span6 first-child"> <label>Verification<strong>*</strong></label></div>
+                  <div class="span6"><label for="captcha_answer">Please enter characters you see in the captcha</label></div>
+                  <div class="clear"></div>
+                   <div class="span6 first-child"> 
+                   		<img src="<!-- TMPL_VAR NAME="captcha_image"-->.png" width="200" height="50" alt="capcha">
+                   </div>
+                    <div class="span6 MT10"><input class="inputfield" type="text" name="code" placeholder=""></div>
+                     <div class="clear"></div>
+                  </div>
+                    
+                  
+                    <div class="clear"></div>
+                   <div class="MB10 MT10"> <input onclick="Check(this.form); return false;" class="btn  btn-primary" type="submit" value="Submit review"></div>
+                </form>
+                
+            </div>
+            <!-- /TMPL_UNLESS -->
+            <!-- end reviewform -->
+<!-- /TMPL_IF -->
+<!-- /TMPL_IF -->  <!-- Closing if reviews on -->
+
+
+
+
+
+
+<!-- INSERT REVIEWS CODE FROM HERE -->
+
+
+<!--END INSERT REVIEWS CODE FROM HERE -->
+
+        </div>
+        <!-- end rightcol -->
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- end container -->
+
+
+
+
+
+
+
+
+
+
+<!-- TMPL_INCLUDE NAME="opac-bottom.inc" -->

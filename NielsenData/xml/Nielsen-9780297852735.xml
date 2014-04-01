@@ -1,0 +1,169 @@
+$VAR1 = "<?xml version="1.0" encoding="UTF-8"?>
+<collection
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"
+  xmlns="http://www.loc.gov/MARC21/slim">
+
+<record>
+  <leader>04556nam a22004332a 4500</leader>
+  <controlfield tag="001">9780297852735</controlfield>
+  <controlfield tag="003">UK-WkNB</controlfield>
+  <controlfield tag="005">20140305000000.0</controlfield>
+  <controlfield tag="007">ta</controlfield>
+  <controlfield tag="008">060927e200707uuxxk    g |||||||0|f eng|d</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9780297852735 (hbk.) :</subfield>
+    <subfield code="c">x{a3}12.99</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">0297852736 (hbk.) :</subfield>
+    <subfield code="c">x{a3}12.99</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">UK-WkNB</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">UK-WkNB</subfield>
+  </datafield>
+  <datafield tag="072" ind1=" " ind2="7">
+    <subfield code="a">FA</subfield>
+    <subfield code="2">bicssc</subfield>
+  </datafield>
+  <datafield tag="072" ind1=" " ind2="7">
+    <subfield code="a">GEN</subfield>
+    <subfield code="2">eflch</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">AF</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Foulds, Adam.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="4">
+    <subfield code="a">The truth about these strange times /</subfield>
+    <subfield code="c">Adam Foulds.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">London :</subfield>
+    <subfield code="b">Weidenfeld &amp; Nicolson :</subfield>
+    <subfield code="b">[distributor] Littlehampton Book Services Ltd :</subfield>
+    <subfield code="b">[distributor] Alliance Distribution Services Pty Ltd :</subfield>
+    <subfield code="b">[distributor] Alliance Distribution Services Pty Ltd :</subfield>
+    <subfield code="b">[distributor] Jonathan Ball Publishers SA :</subfield>
+    <subfield code="b">[distributor] Sterling Publishing (NY),</subfield>
+    <subfield code="c">2007.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">336 p. ;</subfield>
+    <subfield code="c">22x14x3 cm.</subfield>
+  </datafield>
+  <datafield tag="365" ind1=" " ind2=" ">
+    <subfield code="a">02</subfield>
+    <subfield code="b">12.99</subfield>
+    <subfield code="c">GBP</subfield>
+    <subfield code="d">00</subfield>
+    <subfield code="h">Z 12.99 0.0 12.99 0.00</subfield>
+    <subfield code="j">GB</subfield>
+    <subfield code="k">xxk</subfield>
+    <subfield code="m">Littlehampton Book Services Ltd</subfield>
+    <subfield code="2">onix-pt</subfield>
+  </datafield>
+  <datafield tag="365" ind1=" " ind2=" ">
+    <subfield code="a">02</subfield>
+    <subfield code="b">45.00</subfield>
+    <subfield code="c">AUD</subfield>
+    <subfield code="d">00</subfield>
+    <subfield code="h">S 40.91 10.0 45.00 4.09</subfield>
+    <subfield code="j">AU</subfield>
+    <subfield code="k">at</subfield>
+    <subfield code="m">Hachette Australia</subfield>
+    <subfield code="2">onix-pt</subfield>
+  </datafield>
+  <datafield tag="365" ind1=" " ind2=" ">
+    <subfield code="a">02</subfield>
+    <subfield code="b">55.00</subfield>
+    <subfield code="c">NZD</subfield>
+    <subfield code="d">00</subfield>
+    <subfield code="h">S 47.83 15.0 55.00 7.17</subfield>
+    <subfield code="j">NZ</subfield>
+    <subfield code="k">nz</subfield>
+    <subfield code="m">Hachette Australia</subfield>
+    <subfield code="2">onix-pt</subfield>
+  </datafield>
+  <datafield tag="366" ind1=" " ind2=" ">
+    <subfield code="b">20070712</subfield>
+    <subfield code="c">OP 20090629</subfield>
+    <subfield code="f">ALBWO01</subfield>
+    <subfield code="g">20090629</subfield>
+    <subfield code="j">GB</subfield>
+    <subfield code="k">xxk</subfield>
+    <subfield code="m">Littlehampton Book Services Ltd</subfield>
+    <subfield code="2">UK-WkNB</subfield>
+  </datafield>
+  <datafield tag="366" ind1=" " ind2=" ">
+    <subfield code="b">20070906</subfield>
+    <subfield code="c">TO 20120821</subfield>
+    <subfield code="g">20090629</subfield>
+    <subfield code="j">AU</subfield>
+    <subfield code="k">at</subfield>
+    <subfield code="m">Hachette Australia</subfield>
+    <subfield code="2">UK-WkNB</subfield>
+  </datafield>
+  <datafield tag="366" ind1=" " ind2=" ">
+    <subfield code="b">20070712</subfield>
+    <subfield code="c">TO 20120821</subfield>
+    <subfield code="g">20090629</subfield>
+    <subfield code="j">NZ</subfield>
+    <subfield code="k">nz</subfield>
+    <subfield code="m">Hachette Australia</subfield>
+    <subfield code="2">UK-WkNB</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Hardback. Unsewn / adhesive bound.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">A brilliant, touching and funny debut about an extraordinary friendship, a kidnapping, a memory championship and a Russian internet bride.</subfield>
+    <subfield code="b">Saul Dawson-Smith can memorise the sequence of a shuffled deck of cards in under a minute; he can recite pi to a thousand decimal places and he remembers every conversation he's ever had. He is ten years old. Howard McNamee is twenty-eight: lonely, overweight and poorly-educated. He lives in the north of England, far from the scene of his difficult Glasgow childhood, in the home he shared with his mother before she died. Struggling to pay his rent with a succession of menial jobs, Howard comes home each day and talks to the late Mrs McNamee, as he sits in front of the wardrobe that still contains her clothes. Through a series of unexpected events, these two solitary people find themselves forming an unlikely friendship, as Howard is taken under the wing of Saul's parents, thrust into a life in London (where he makes new friends, tries to navigate a bewildering new city, and accidentally acquires a Russian internet fiancee) and Saul prepares himself for the World Memory Championships - the event he has been training for his whole life.  But as the pressure mounts on the little boy, and his well-meaning but single-minded parents grow increasingly less able to see beyond their own ambitions for their son, Howard realises he must act to save his small friend from a life of soul-destroying competitions and unbearable expectation. The decision he reaches turns all of their lives upside-down. Saul and Howard embark on an extraordinary adventure: seen by the world as an apparent abduction, the road trip they take together is at once an exhilarating escape-bid, a journey into Howard's own past and a bewitchingly strange voyage of discovery for man and boy.</subfield>
+  </datafield>
+  <datafield tag="520" ind1="1" ind2=" ">
+    <subfield code="a">"there is much to admire in this debut, from the assured descriptions to the well-judged blend of comedy and drama -- Doug Johnstone The Times  Featured on their Great New Writers list The Sunday Times  An unusual debut novel about a road trip that defies all expectations" -- Rosemary Goring The Herald  "The cast of characters the two meet on their voyage of discovery are beautifully brought to life in this poetic debut novel" The Northern Echo  "this extremely fine novel is written with a wonderful clarity and precision" The Sunday Times.</subfield>
+  </datafield>
+  <datafield tag="545" ind1="0" ind2=" ">
+    <subfield code="a">Adam Foulds was born in 1974 and lives in South London. He is a graduate of the Creative Writing MA at the University of East Anglia and his poetry has appeared in a number of literary magazines. The Truth About These Strange Times is his first novel.</subfield>
+  </datafield>
+  <datafield tag="586" ind1=" " ind2=" ">
+    <subfield code="a">Winner of Sunday Times Young Writer of the Year Award 2008.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Gifted children</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Social isolation</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Friendship</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Kidnapping</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">People with social disabilities</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Intergenerational relations</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">General.</subfield>
+    <subfield code="2">eflch</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Modern &amp; contemporary fiction (post c 1945).</subfield>
+    <subfield code="2">bicssc</subfield>
+  </datafield>
+</record>
+</collection>";

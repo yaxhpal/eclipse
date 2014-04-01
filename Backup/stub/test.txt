@@ -1,0 +1,99 @@
+	 #my $dbh = DBI->connect("dbi:mysql:dbname=test","root","", { RaiseError => 1 },) or die $DBI::errstr;
+	 #&fetchDataFromGoogle('9781860498824');
+	 #  my $ary_ref = $dbh->selectcol_arrayref("SELECT column_name FROM information_schema.columns WHERE table_name = 'externaldata'");
+	 #  my @columns = @{$ary_ref}; 
+	 #  print(Dumper(@columns));
+	 #  my %bookHash = %{&fetchDataFromNielsen('9781860498824')};
+	 #  my $query = "INSERT INTO externaldata SET ";
+	 #  my @bind  = ();
+	 #  foreach (@columns){
+	 #     $query .= "$_ = ?,";
+	 #     push(@bind, $bookHash{$_});
+	 #  }
+	 #  $query =~ s/\,$//;
+	 #  my $sth = $dbh->prepare($query);
+	 #  $sth->execute(@bind);
+	 #  $sth->finish();
+	 #  $dbh->disconnect();
+	 #$sth->finish();
+	 #&fetchData('1860498825');
+	 #&fetchData('9780194422703');
+	 #&fetchData('9781860498824');
+	 print Dumper &fetchDataFromNielsen('9780194422703');
+ }
+ 
+# 	return \%book unless (defined($book{'title'}));
+#
+#	$biblioitem = SearchInTable('biblioitems', {'isbn' => $isbn->isbn()},
+#								 undef, undef, undef, undef, "exact")->[0];
+#	$biblioitemnumber = $biblioitem->{'biblioitemnumber'};
+#	$imageflag = $biblioitem->{'is_present'};
+#	
+#	if ($imageflag == 1) {
+#		$image_file_name =  $static_url.$isbn->isbn().".jpeg";
+#	} elsif ($imageflag == 2) {
+#		$image_file_name  = $static_url."noimage.jpg";
+#	} elsif ($book{'imageflag'} eq 'Y') {
+#		$image = getNielsenImage($isbn->isbn());
+#		if ($image) {
+#			$image_file_name  = $image_root_path.$isbn.".jpeg";
+#			open($outfile, '>', $image_file_name) or warn $!;
+#			binmode($outfile);
+#			print {$outfile} decode_base64($image);
+#			$flag = '1';
+#		} else {
+#			$image_file_name  = $static_url."noimage.jpg";
+#			$flag = '2';
+#		}
+#		UpdateInTable('biblioitems', {'biblioitemnumber'=>$biblioitemnumber, 'is_present'=>$flag});		
+#	} else {
+#		$image_file_name = $static_url.$isbn->isbn().".jpeg";
+#	}
+#	$book{'thumbnail_url'} = $image_file_name;
+#	$book{'image_url'} 	   = $image_file_name;
+# 
+ 
+ 
+
+------------------------------------------------------
+foreach my $key ( keys %book ) {
+		print($key,' = ',$book{$key},"\n");
+	}
+	
+	print(Dumper(%book));
+	
+------------------------------------------------------
+
+
+
+{package USERINFO;
+	 $op='op'; 
+	 $mship='type'; 
+	 $categorycode='categorycode'; 
+	 $firstname='firstname'; 
+	 $surname='surname'; 
+	 $dd='dd'; 
+	 $mm='mm'; 
+	 $yyyy='yyyy'; 
+	 $title='title'; 
+	 $dateofbirth='dateofbirth'; 
+	 $sex='sex'; 
+	 $profession='profession'; 
+	 $address='address'; 
+	 $city='city'; 
+	 $pincode='pincode'; 
+	 $state='state'; 
+	 $country='country'; 
+	 $email='email'; 
+	 $telephone='telephone'; 
+	 $isdt='isdt'; 
+	 $stdt='stdt'; 
+	 $mobile='mobile'; 
+	 $fax='fax'; 
+	 $isdf='isdf'; 
+	 $stdf='stdf'; 
+	 $agentcode='agentcode'; 
+	 $reg_id='reg_id'; 
+	 $result='result'; 
+	 $branch='branch'; 
+}

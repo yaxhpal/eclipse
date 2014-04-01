@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"
+  xmlns="http://www.loc.gov/MARC21/slim">
+
+<record>
+  <leader>02396nam a22003013a 4500</leader>
+  <controlfield tag="001">9780330535670</controlfield>
+  <controlfield tag="003">UK-WkNB</controlfield>
+  <controlfield tag="005">20131106000000.0</controlfield>
+  <controlfield tag="007">ta</controlfield>
+  <controlfield tag="008">110215e201103uuxxk    g |||||||0|f eng|d</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9780330535670 (pbk.) :</subfield>
+    <subfield code="c">�7.99</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">0330535676 (pbk.) :</subfield>
+    <subfield code="c">�7.99</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">UK-WkNB</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">UK-WkNB</subfield>
+  </datafield>
+  <datafield tag="072" ind1=" " ind2="7">
+    <subfield code="a">FA</subfield>
+    <subfield code="2">bicssc</subfield>
+  </datafield>
+  <datafield tag="072" ind1=" " ind2="7">
+    <subfield code="a">FT</subfield>
+    <subfield code="2">bicssc</subfield>
+  </datafield>
+  <datafield tag="072" ind1=" " ind2="7">
+    <subfield code="a">GEN</subfield>
+    <subfield code="2">eflch</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">AF</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Archer, Jeffrey,</subfield>
+    <subfield code="d">1940-</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Only time will tell /</subfield>
+    <subfield code="c">Jeffrey Archer.</subfield>
+  </datafield>
+  <datafield tag="250" ind1=" " ind2=" ">
+    <subfield code="a">Indian ed.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">London :</subfield>
+    <subfield code="b">Pan Books :</subfield>
+    <subfield code="b">[distributor] Macmillan Distribution (MDL) :</subfield>
+    <subfield code="b">[distributor] Alliance Distribution Services Pty Ltd :</subfield>
+    <subfield code="b">[distributor] Alliance Distribution Services Pty Ltd :</subfield>
+    <subfield code="b">[distributor] Booksite Afrika,</subfield>
+    <subfield code="c">2011.</subfield>
+  </datafield>
+  <datafield tag="365" ind1=" " ind2=" ">
+    <subfield code="a">02</subfield>
+    <subfield code="b">7.99</subfield>
+    <subfield code="c">GBP</subfield>
+    <subfield code="d">00</subfield>
+    <subfield code="h">Z 7.99 0.0 7.99 0.00</subfield>
+    <subfield code="j">GB</subfield>
+    <subfield code="k">xxk</subfield>
+    <subfield code="m">Macmillan Distribution (MDL)</subfield>
+    <subfield code="2">onix-pt</subfield>
+  </datafield>
+  <datafield tag="366" ind1=" " ind2=" ">
+    <subfield code="b">20110311</subfield>
+    <subfield code="c">IP 20110310</subfield>
+    <subfield code="f">AMDPF002</subfield>
+    <subfield code="j">GB</subfield>
+    <subfield code="k">xxk</subfield>
+    <subfield code="m">Macmillan Distribution (MDL)</subfield>
+    <subfield code="2">UK-WkNB</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Paperback.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">The Clifton Chronicles - a multi-generational family saga, from the epic master storyteller.</subfield>
+    <subfield code="b">The Clifton Chronicles is Jeffrey Archer's most ambitious work in four decades as an international bestselling author. The epic tale of Harry Clifton's life begins in 1920, with the chilling words, 'I was told that my father was killed in the war'. But it will be another twenty years before Harry discovers how his father really died, which will only lead him to question: who was his father? Is he the son of Arthur Clifton, a stevedore who worked in Bristol docks, or the first born son of a scion of West Country society, whose family owns a shipping line? Only Time will Tell covers the years from 1920 to 1940, and includes a cast of memorable characters that The Times has compared to The Forsyte Saga. Volume one takes us from the ravages of the Great War to the outbreak of the Second World War, when Harry must decide whether to take up a place at Oxford, or join the navy and go to war with Hitler's Germany. In Jeffrey Archer's masterful hands, the reader is taken on a journey that they won't want to end, and when you turn the last page of this unforgettable yarn, you will be faced with a dilemma that neither you, nor Harry Clifton could have anticipated.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">General.</subfield>
+    <subfield code="2">eflch</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Modern &amp; contemporary fiction (post c 1945).</subfield>
+    <subfield code="2">bicssc</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Sagas.</subfield>
+    <subfield code="2">bicssc</subfield>
+  </datafield>
+</record>
+
+</collection>

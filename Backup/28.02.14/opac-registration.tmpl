@@ -1,0 +1,457 @@
+<!-- TMPL_INCLUDE name="doc-head-open.inc" --><!-- TMPL_IF NAME="LibraryNameTitle" --><!-- TMPL_IF NAME="LibraryNameTitle" --><!-- TMPL_VAR NAME="LibraryNameTitle" --><!-- TMPL_ELSE -->Koha Online<!-- /TMPL_IF --><!-- TMPL_ELSE -->Koha Online<!-- /TMPL_IF --> Catalog &rsaquo;  Updating Details for <!-- TMPL_LOOP name="BORROWER_INFO" --><!-- TMPL_VAR name="firstname" --> <!-- TMPL_VAR name="surname" --><!-- /TMPL_LOOP -->
+<!-- TMPL_INCLUDE NAME="doc-head-close.inc" -->
+<!-- TMPL_INCLUDE NAME="calendar.inc" -->
+</head>
+<body id="registartion">
+{<!-- TMPL_VAR NAME="test" -->}
+<script type="text/javascript" src="<!-- TMPL_VAR name="themelang" -->/lib/jquery/plugins/jquery.tablesorter.min.js">
+</script>
+<script type="text/javascript">
+function gotolink() { 
+var destination= self.location; 
+
+for(var i = 0; i<document.formname.radiobutton.length; i++){
+  if(document.formname.radiobutton[i].checked) {
+    destination=document.formname.radiobutton[i].value }
+  }
+window.location = destination;
+}
+</script>
+<script type="text/javascript">
+//<![CDATA[
+function Check(f) {
+	//alert(f.mobile.value);
+	var ok=1;
+	var _alertString="";
+	var alertString2;
+
+        if (f.branchcode.value.length==0) {
+		_alertString += "\n- " + _("Library is missing");
+		}
+        var mm = document.getElementsByName('mship');
+        //alert("Here");
+        //alert(mm);
+        var ty;
+        for(var i = 0; i < mm.length; i++){
+            if(mm[i].checked){
+                ty = mm[i].value;
+            }
+        }
+        //alert(ty);
+        //alert("I am here.1!");
+        if (typeof(ty) == "undefined") {
+        	//alert("I am here.!2");
+		_alertString += "\n- " + _("Membership category is missing");
+	}
+        
+	if (f.firstname.value.length==0) { 
+		_alertString += "\n- " + _("First Name is missing");
+	}
+	
+	if (f.surname.value.length==0) { 
+		_alertString += "\n- " + _("Surname is missing");
+	}
+	
+	if (f.sex.value.length!=1) { 
+		_alertString += "\n- " + _("Gender is missing");
+	}
+	
+	if (f.dd.value.length==0) { 
+		_alertString += "\n- " + _("Date of Birth is missing");
+	}
+	if (isNaN(f.dd.value)) { 
+		_alertString += "\n- " + _("Date of Birth is alpha numeric");
+	}
+	
+	if (f.mm.value.length==0) { 
+		_alertString += "\n- " + _("Month of Birth is missing");
+	}
+	if (isNaN(f.mm.value)) { 
+		_alertString += "\n- " + _("Month of Birth is alpha numeric");
+	}
+		if (f.yyyy.value.length==0) { 
+		_alertString += "\n- " + _("Year of Birth is missing");
+	}
+	if (isNaN(f.yyyy.value)) { 
+		_alertString += "\n- " + _("Year of Birth is alpha numeric");
+	}
+	if (f.address.value.length==0) { 
+		_alertString += "\n- " + _("Address is missing");
+	}
+	if (f.city.value.length==0) { 
+		_alertString += "\n- " + _("City is missing");
+	}
+	if (f.state.value.length==0) { 
+		_alertString += "\n- " + _("State is missing");
+	}
+	if (f.pincode.value.length==0) { 
+		_alertString += "\n- " + _("Pincode is missing");
+	}
+	if (isNaN(f.pincode.value)) { 
+		_alertString += "\n- " + _("Pincode is alpha numeric");
+	}
+	//alert("I am here.3!");
+	if (f.country.value.length==0) { 
+		_alertString += "\n- " + _("Country is missing");
+	}
+	
+	if (f.mobile.value.length==0) { 
+		_alertString += "\n- " + _("Mobile no is missing");
+	}
+	if (isNaN(f.mobile.value)) { 
+		_alertString += "\n- " + _("Mobile is alpha numeric");
+	}
+	
+	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	if (!(re.test(f.email.value))) {
+		_alertString += "\n- " + _("Enter valid email address");
+	}
+	
+	var regex = /^[a-zA-Z ]*$/;
+	if (!(regex.test(f.city.value))) {
+		_alertString += "\n- " + _("Enter valid City");
+	}
+	if (!(regex.test(f.state.value))) {
+		_alertString += "\n- " + _("Enter valid State");
+	}
+	if (!(regex.test(f.country.value))) {
+		_alertString += "\n- " + _("Enter valid Country");
+	}
+	if (!(regex.test(f.firstname.value))) {
+		_alertString += "\n- " + _("Enter valid Firstname");
+	}
+	if (!(regex.test(f.surname.value))) {
+		_alertString += "\n- " + _("Enter valid Surname");
+	}
+	
+	//alert("I am here.4!");
+        if (_alertString.length==0) { 
+			
+        	document.Aform.submit();
+	}  else {
+					
+                    alertString2  = _("Form not submitted because of the following problem(s)");
+                    alertString2 += "\n------------------------------------------------------------------------------------\n";
+                    alertString2 += _alertString;
+                    alert(alertString2);
+            }
+	
+    }
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+        $('#selectlibrary').find("input:submit").hide();
+        $('#branch').change(function() {
+                $('#selectlibrary').submit();
+        });
+});
+//]]>
+</script>
+<div id="bd">
+<!-- TMPL_INCLUDE name="masthead.inc" -->
+<!-- start container -->
+<div class="container">
+	<div class="row-fluid">
+    	<!-- breadcrumb -->
+        <div class="breadcrumb"><a href="/cgi-bin/koha/opac-main.pl">Home</a>  /  Registration for membership</div>
+        <!-- breadcrumb -->
+        <!-- start leftcol -->
+        <!-- TMPL_VAR NAME="mayank" -->
+<!-- TMPL_IF NAME="add_form" -->
+<form action="/cgi-bin/koha/opac-registration.pl" method="post">
+<input type="hidden" name="op" value="add_form" />
+<input type="hidden" name="reg_id" value="<!-- TMPL_VAR NAME="reg_id" -->" />
+<input type="hidden" name="categorycode" value="<!-- TMPL_VAR NAME="mtype" -->" />
+<input type="hidden" name="dd" value="<!-- TMPL_VAR NAME="dd" -->" />
+<input type="hidden" name="mm" value="<!-- TMPL_VAR NAME="mm" -->" />
+<input type="hidden" name="yyyy" value="<!-- TMPL_VAR NAME="yyyy" -->" />
+<h3>REVIEW INFORMATION </h3>
+<fieldset class="rows">
+<p>Please confirm the details that you have entered and proceed to the payment page by clicking ‘proceed to payment page’. If you wish to change these details, click ‘Edit’.
+</p>
+</fieldset>
+<fieldset class="rows" id="memberentry_identity">
+<ol>
+<li><label for="branchcode" class="">Library :</label><!-- TMPL_VAR name="branchcode_d" --><div class="clear"></div></li>
+<li><label for="categorycode" class="">Membership Category :</label><!-- TMPL_VAR NAME="categorycode_c" --><div class="clear"></div></li>
+<li><label for="enrolmentfee" class="">Enrolment Fee :</label><!-- TMPL_VAR name="enrolmentfee" --><div class="clear"></div></li>
+<li><label for="firstname" class="">Name :</label><!-- TMPL_VAR name="firstname" --> <!-- TMPL_VAR name="surname" --> <div class="clear"></div></li>
+<li><label for="dateofbirth" class="">Date of Birth :</label><!-- TMPL_VAR name="dateofbirth" --><div class="clear"></div></li>
+<li><label for="sex" class="">Gender :</label><!-- TMPL_VAR name="sex" --><div class="clear"></div></li>
+<li><label for="address" class="">Address :</label><!-- TMPL_VAR name="address" --><div class="clear"></div></li>
+<li><label for="city" class="">City :</label><!-- TMPL_VAR name="city" --><div class="clear"></div></li>
+<li><label for="pincode" class="">Pincode :</label><!-- TMPL_VAR name="pincode" --><div class="clear"></div></li>
+<li><label for="state" class="">State :</label><!-- TMPL_VAR name="state" --><div class="clear"></div></li>
+<li><label for="country" class="">Country :</label><!-- TMPL_VAR name="country" --><div class="clear"></div></li>
+<li><label for="email" class="">Email Address :</label><!-- TMPL_VAR name="email" --><div class="clear"></div></li>
+<li><label for="telephone" class="">Telephone :</label><!-- TMPL_VAR name="isdt" --> <!-- TMPL_VAR name="stdt" --> <!-- TMPL_VAR name="telephone" --><div class="clear"></div></li>
+<li><label for="mobile" class="">Mobile :</label><!-- TMPL_VAR name="mobile" --><div class="clear"></div></li>
+</ol>
+
+<input class = "btn btn-primary" type="submit" name="edit" value="Edit" />
+<a class="btn btn-primary" href="/cgi-bin/koha/opac-registration.pl?op=payment&amp;reg_id=<!-- TMPL_VAR name="reg_id" -->&amp;branchcode=<!-- TMPL_VAR name="branchcode" -->&amp;categorycode=<!-- TMPL_VAR name="categorycode" -->">
+Procced to payment >></a>
+</form>
+</fieldset>
+</div>
+
+<!--  /div>
+</div>
+</form-->
+<!-- TMPL_ELSE -->
+
+        <div class="span12 first-child registerform">
+        	<h2>Registration</h2>  
+
+            
+            	<p>Joining the British Council Library has now been made easier for you. All you need to do is complete the registration form below and pay the membership fee online through our secure platform.</p>
+                <p><strong>Please note</strong></p>
+                <p>New members are required to visit their respective library within 10 days of making the online payment to collect their new membership card. Please carry a valid residence proof (eg: Election ID, School/College ID, Driving License, Passport) and a confirmation of payment which will be generated once the payment has been made. The new membership card will be issued at the library after validating the above mentioned documents <strong>The membership will be valid from the date of online payment so please collect your card as soon as possible.</strong></p>
+                <div class="clear"></div>
+                <!-- div class="row">
+                	<!-- label class="span4 first-child">Membership Type:</label-->
+                	
+                	<!-- TMPL_IF EXPR="(mtype eq 'GL') || (mtype eq 'GM13') || (mtype eq 'DM13') || (mtype eq 'PL13') || (mtype eq 'OM13')" -->
+                    <!-- label class="span4"><input name="a" type="radio" value="" checked>Individual registration</label>
+                    <label class="span4"><input name="a" type="radio" value="" >Corporate Registration</label-->
+                    <!-- TMPL_ELSE -->
+                    <!-- label class="span4"><input name="a" type="radio" value="" >Individual registration</label>
+                    <label class="span4"><input name="a" type="radio" value="" checked>Corporate Registration</label-->
+                    
+                    <!-- /TMPL_IF -->
+                    <!-- div class="clear"></div>
+                </div-->
+		<form action="/cgi-bin/koha/opac-registration.pl" name="Aform" method="post"  onsubmit="return checkform(this);" class="MB10">
+            <input type="hidden" name="op" value="add_validate" />
+			<input type="hidden" name="reg_id" value="<!-- TMPL_VAR NAME="reg_id" -->" />
+			<input type="hidden" id="categorycode" name="categorycode" value="<!-- TMPL_VAR NAME="mtype" -->" />
+                <h3>Please complete the following details:</h3>
+                <div class="row2 MT10 span6 first-child">
+                	<label>First Name<em>*</em></label>
+                    <input class="inputfield span12 first-child" type="text" id="firstname" value="<!-- TMPL_VAR name="firstname" -->"  name="firstname" ><div class="clear"></div>
+                    <span>Please enter your name. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6">
+                	<label>Last Name<em>*</em></label>
+                    <input class="inputfield span12 first-child" id="surname" type="text" value="<!-- TMPL_VAR name="surname" -->"  name="surname"><div class="clear"></div>
+                    <span>Please enter last name. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6 first-child">
+                	<label>Profession</label>
+                    <input class="inputfield  span12 first-child" id="profession" type="text" value="<!-- TMPL_VAR name="profession" -->"  name="profession"><div class="clear"></div>
+                    <span>Please enter your Profession. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6">
+                	<label>Library<em>*</em></label>
+                	<select name="branchcode" id="branchcode" class="inputfield  span12 first-child">
+             		<option></option>
+            <!-- TMPL_LOOP NAME="branchloop" -->
+            <!-- TMPL_IF NAME="selected" --><option value="<!-- TMPL_VAR NAME="branchcode" -->" selected="selected"><!-- TMPL_VAR NAME="branchname" --></option>
+            <!-- TMPL_ELSE --><option value="<!-- TMPL_VAR NAME="branchcode" -->"><!-- TMPL_VAR NAME="branchname" --></option>
+            <!-- /TMPL_IF -->
+            <!-- /TMPL_LOOP -->
+            		</select>
+                    
+                    <span>Please select your Library. </span>
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="row2 MT10">
+                	<script type="text/javascript">
+					   /* $(document).ready(function() {
+							$(".registerform .row3").click(function(e) {
+								$(this).find('p').toggle('');
+								return false;
+							});
+						});*/
+						function radio_select(idr)
+						{
+							//alert(idr);
+							$("#"+idr).click(function(e) {
+								//alert(idr);
+								$("#categorycode").val(idr);
+								$(this).find('p').toggle('');
+								//return false;
+							});
+						}
+					</script>
+                	<label> Membership Category<em>*</em></label>
+                    <!-- start -->
+                    <div class="rowbt">
+                    	<div class="row3 first" id="GL">
+                        	<div class="span4 first-child"><input <!-- TMPL_IF EXPR="mtype eq 'GL'" -->checked<!--/TMPL_IF--> name="mship" type="radio" value="GL" onclick="radio_select('GL')">Gold 6 Months</div>
+                            <div class="span4"><icon class="icon-rupee"></icon>1,000 / 6 months*</div>
+                            <div class="span4 alignright"><a href="javascript:radio_select('GL')" class="viewdt">View Details</a></div>
+                            <div class="clear"></div>
+                            <p><strong>Entitlement:</strong>  2 books from general/children's collection.</p>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="row3" id="GM13" >
+                        	<div class="span4 first-child"><input <!-- TMPL_IF EXPR="mtype eq 'GM13'" -->checked<!--/TMPL_IF--> name="mship" type="radio" value="GM13" onclick="radio_select('GM13')">Gold</div>
+                            <div class="span4"><icon class="icon-rupee"></icon>1,600 / 1 Year*</div>
+                            <div class="span4 alignright"><a href="javascript:radio_select('GM13')" class="viewdt">View Details</a></div>
+                            <div class="clear"></div>
+                            <p><strong>Entitlement:</strong>3 books/CD's from general/children's collection + 3 periodicals</p>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="row3" id="DM13">
+                        	<div class="span4 first-child"><input <!-- TMPL_IF EXPR="mtype eq 'DM13'" -->checked<!--/TMPL_IF--> name="mship" type="radio" value="DM13" onclick="radio_select('DM13')">Diamond</div>
+                            <div class="span4"><icon class="icon-rupee"></icon>2,800 / 1 Year*</div>
+                            <div class="span4 alignright"><a href="javascript:radio_select('DM13')" class="viewdt">View Details</a></div>
+                            <div class="clear"></div>
+                            <p><strong>Entitlement:</strong> 4 books/CD's from general/children's collection + 3 periodicals + 3 DVD's</p>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="row3" id="PL13">
+                        	<div class="span4 first-child"><input <!-- TMPL_IF EXPR="mtype eq 'PL13'" -->checked<!--/TMPL_IF--> name="mship" type="radio" value="PL13" onclick="radio_select('PL13')">Platinum </div>
+                            <div class="span4"><icon class="icon-rupee"></icon>3,700 / 1 Year*</div>
+                            <div class="span4 alignright"><a href="javascript:radio_select('PL13')" class="viewdt">View Details</a></div>
+                            <div class="clear"></div>
+                            <p><strong>Entitlement:</strong> 8 books/CD's from general/children's collection + 3 periodicals + 3 DVD's + Online Academic Books</p>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="row3" id="OM13">
+                        	<div class="span4 first-child"><input <!-- TMPL_IF EXPR="mtype eq 'OM13'" -->checked<!--/TMPL_IF--> name="mship" type="radio" value="OM13" onclick="radio_select('OM13')">Online Membership</div>
+                            <div class="span4"><icon class="icon-rupee"></icon>1,100 / 1 Year*</div>
+                            <div class="span4 alignright"><a href="javascript:radio_select('OM13')" class="viewdt">View Details</a></div>
+                            <div class="clear"></div>
+                            <p><strong>Entitlement:</strong> Unlimited checkouts from Online Academic Books and e-journals</p>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <!-- end -->
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6 first-child">
+                	<label>Sex<em>*</em></label>
+                    <select  name="sex" id="sex" class="inputfield span12 first-child">
+                    <option>-- select --</option>
+                    <!-- TMPL_IF EXPR="sex eq 'F'" --><option value="F" selected="selected">Female</option><!-- TMPL_ELSE --><option value="F">Female</option><!-- /TMPL_IF -->
+					<!-- TMPL_IF EXPR="sex eq 'M'" --><option value="M" selected="selected">Male</option><!-- TMPL_ELSE --><option value="M">Male</option><!-- /TMPL_IF -->
+                    </select><div class="clear"></div>
+                    <span>Please select your  Sex. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6">
+                	<label>Date of Birth<em>*</em></label>
+                    <input name="dd" class="inputfield span4 first-child" type="text" value="<!-- TMPL_VAR name="dd" -->">
+                    <input name="mm"class="inputfield span4" type="text" value="<!-- TMPL_VAR name="mm" -->">
+                    <input name="yyyy"class="inputfield span4" type="text" value="<!-- TMPL_VAR name="yyyy" -->"><div class="clear"></div>
+                    <span>Please enter Date of Birth. (dd/mm/yyyy)</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6 first-child">
+                	<label>Address<em>*</em></label>
+                    <input class="inputfield span12 first-child" type="text" id ="address" size = "40" value="<!-- TMPL_VAR name="address" -->"  name="address"><div class="clear"></div>
+                    <span>Please enter Address. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6">
+                	<label>City<em>*</em></label>
+                    <input class="inputfield span12 first-child" id="city" type="text" value="<!-- TMPL_VAR name="city" -->"  name="city" /> <div class="clear"></div>
+                    <span>Please enter your  City. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6 first-child">
+                	<label>Pin Code<em>*</em></label>
+                    <input class="inputfield span12 first-child" id="pincode" type="text" value="<!-- TMPL_VAR name="pincode" -->"  name="pincode" /><div class="clear"></div>
+                    <span>Please enter Pin Code. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6">
+                	<label>State<em>*</em></label>
+                    <input class="inputfield span12 first-child" id="state" type="text" value="<!-- TMPL_VAR name="state" -->"  name="state" /><div class="clear"></div>
+                    <span>Please enter your  State. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6 first-child">
+                	<label>Country<em>*</em></label>
+                    <input class="inputfield span12 first-child" id="country" type="text" value="<!-- TMPL_VAR name="country" -->"  name="country" /><div class="clear"></div>
+                    <span>Please enter your  Country. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6">
+                	<label>Email Address<em>*</em></label>
+                    <input class="inputfield span12 first-child" id="email" type="text" value="<!-- TMPL_VAR name="email" -->"  name="email" /><div class="clear"></div>
+                    <span>Please enter Email Address. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6 first-child">
+                	<label>Telephone No</label>
+                    <input class="inputfield span12 first-child" id="telephone" type="telephone" value="<!-- TMPL_VAR name="isdt" --><!-- TMPL_VAR name="stdt" --><!-- TMPL_VAR name="telephone" -->"  name="telephone" /><div class="clear"></div>
+                    <span>Please enter Telephone No . </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6">
+                	<label>Mobile<em>*</em></label>
+                    <input class="inputfield span12 first-child" id="mobile" type="text" value="<!-- TMPL_VAR name="mobile" -->"  name="mobile" /><div class="clear"></div>
+                    <span>Please enter Mobile. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6 first-child">
+                	<label>Fax</label>
+                    <input class="inputfield span12 first-child" id="fax" type="text" value="<!-- TMPL_VAR name="fax" -->"  name="fax" /><div class="clear"></div>
+                    <span>Please enter Fax. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6">
+                	<label>Agent Code</label>
+                    <input class="inputfield span12 first-child" id="agentcode" type="text" value="<!-- TMPL_VAR name="agentcode" -->"  name="agentcode" /><div class="clear"></div>
+                    <span>Please enter Agent Code. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10 span6 first-child">
+                	<label>Where did you hear about us</label>
+                    <input class="inputfield  span12 first-child" type="text"><div class="clear"></div>
+                    <span>Please enter Where did you hear about us. </span>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                <div class="row2 MT10">
+                	<label><input name="" type="checkbox" value=""> I would like updates by Email</label>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10">
+                	<label><input name="" type="checkbox" value=""> I would like updates by SMS</label>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10">
+                	<label>Please answer this simple math question. 9 + 3 =</label>
+                     <input class="inputfield  span6 first-child" type="text"><div class="clear"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10">
+                <p>The British Council collects your personal data to enable any requests arising from the submission of this form to be processed, 
+                including contacting you to progress your request. 
+                Under UK Data Protection law you have the right to ask for a copy of the information we hold on you, 
+                for which we may charge a fee, and the right to ask us to correct any inaccuracies in that information. 
+                If you want more information about this please contact your local 
+                <a target="_blank" href="http://www.britishcouncil.in/contact-us">British Council office</a> or the 
+                <a target="_blank" href="mailto:dataprotection@britishcouncil.org">Data Protection Team</a>, 
+                or see our <a target="_blank" href="http://www.britishcouncil.org/new/Home/freedom-of-information/information-guide/policies/data-protection/">Data Protection website.</a>
+                </p> 
+                </div>
+                <div class="row2 MT10">
+                	<label><input name="" type="checkbox" value=""> I have read and agree to <a target="_blank" href="http://www.britishcouncil.in/privacy-terms">Privacy Policy and Terms of Use</a> for this website</label>
+                    <div class="clear"></div>
+                </div>
+                <div class="row2 MT10">
+                	<input type="button" class="btn  btn-primary" value="Submit" onclick="Check(this.form); return false;"> 
+                    <a class="btn btn-danger" href="/cgi-bin/koha/opac-main.pl">Cancel</a>
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
+        <!-- end fullcol -->
+    </div>
+    <div class="clear"></div>
+
+<!-- /TMPL_IF-->
+</div>
+
+<!-- TMPL_INCLUDE NAME="opac-bottom.inc" -->

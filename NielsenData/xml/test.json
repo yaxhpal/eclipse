@@ -1,0 +1,70 @@
+{
+ "kind": "books#volumes",
+ "totalItems": 1,
+ "items": [
+  {
+   "kind": "books#volume",
+   "id": "s5ZgQgAACAAJ",
+   "etag": "+gzbU/MKzjQ",
+   "selfLink": "https://www.googleapis.com/books/v1/volumes/s5ZgQgAACAAJ",
+   "volumeInfo": {
+    "title": "Fingersmith",
+    "authors": [
+     "Sarah Waters"
+    ],
+    "publishedDate": "2002",
+    "description": "Set in 1860s London, this is the story of Susan, a pickpocket who is persuaded to pose as a lady's maid and infiltrate the house of a young heiress. This novel explores the nature of identity and what people do with disguise.",
+    "industryIdentifiers": [
+     {
+      "type": "ISBN_10",
+      "identifier": "1860498825"
+     },
+     {
+      "type": "ISBN_13",
+      "identifier": "9781860498824"
+     }
+    ],
+    "pageCount": 548,
+    "printType": "BOOK",
+    "categories": [
+     "London (England)"
+    ],
+    "averageRating": 4.0,
+    "ratingsCount": 127,
+    "contentVersion": "preview-1.0.0",
+    "imageLinks": {
+     "smallThumbnail": "http://bks3.books.google.co.in/books?id=s5ZgQgAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+     "thumbnail": "http://bks3.books.google.co.in/books?id=s5ZgQgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+    },
+    "language": "en",
+    "previewLink": "http://books.google.co.in/books?id=s5ZgQgAACAAJ&dq=isbn:1860498825&hl=&cd=1&source=gbs_api",
+    "infoLink": "http://books.google.co.in/books?id=s5ZgQgAACAAJ&dq=isbn:1860498825&hl=&source=gbs_api",
+    "canonicalVolumeLink": "http://books.google.co.in/books/about/Fingersmith.html?hl=&id=s5ZgQgAACAAJ"
+   },
+   "saleInfo": {
+    "country": "IN",
+    "saleability": "NOT_FOR_SALE",
+    "isEbook": false
+   },
+   "accessInfo": {
+    "country": "IN",
+    "viewability": "NO_PAGES",
+    "embeddable": false,
+    "publicDomain": false,
+    "textToSpeechPermission": "ALLOWED",
+    "epub": {
+     "isAvailable": false
+    },
+    "pdf": {
+     "isAvailable": false
+    },
+    "webReaderLink": "http://books.google.co.in/books/reader?id=s5ZgQgAACAAJ&hl=&printsec=frontcover&output=reader&source=gbs_api",
+    "accessViewStatus": "NONE",
+    "quoteSharingAllowed": false
+   },
+   "searchInfo": {
+    "textSnippet": "Set in 1860s London, this is the story of Susan, a pickpocket who is persuaded to pose as a lady&#39;s maid and infiltrate the house of a young heiress. This novel explores the nature of identity and what people do with disguise."
+   }
+  }
+ ]
+}
