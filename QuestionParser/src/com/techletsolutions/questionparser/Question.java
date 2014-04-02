@@ -33,12 +33,12 @@ public class Question {
 		question += questionStatement +"\n";
 		if (statements != null) {
 			for (String statement : statements) {
-				question += statement+"\n";
+				question += "\t"+statement+"\n";
 			}
 		}
 		
 		if (isNotEmpty(questionAsked)) {
-			question += questionAsked+"\n";
+			question += "\t"+questionAsked+"\n";
 		}
 		
 		if (isNotEmpty(optionA)) {

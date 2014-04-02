@@ -37,7 +37,7 @@ public class QParser {
 					} else {
 						if (string.matches("^[\\(\\)abcd\\.]+.*")) {
 							optionCounter++;
-							option = string.replaceFirst("\\(.?\\)", "").trim();
+							option = string.replace("\\([abcd]{1}\\)", "").trim();
 							switch (optionCounter) {
 							case 1: 
 								question.setOptionA(option);
