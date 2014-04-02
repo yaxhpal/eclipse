@@ -1,5 +1,8 @@
 package com.techletsolutions.questionparser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Question {
 	private String questionStatement;
@@ -7,7 +10,7 @@ public class Question {
 	private String optionB;
 	private String optionC;
 	private String optionD;
-	private String[] statements = {""};
+	private List<String>   statements;
 	private String questionAsked;
 	private String answer;
 	private String explanation;
@@ -21,6 +24,7 @@ public class Question {
 		questionAsked="";
 		answer="";
 		explanation="";
+		statements = new ArrayList<String>();
 	}
 
 	@Override
@@ -42,15 +46,15 @@ public class Question {
 		}
 		
 		if (isNotEmpty(optionB)) {
-			question += "\tA. " + optionB + "\n";
+			question += "\tB. " + optionB + "\n";
 		}
 		
 		if (isNotEmpty(optionC)) {
-			question += "\tA. " + optionC + "\n";
+			question += "\tC. " + optionC + "\n";
 		}
 		
 		if (isNotEmpty(optionD)) {
-			question += "\tA. " + optionD + "\n";
+			question += "\tD. " + optionD + "\n";
 		}
 		
 		if (isNotEmpty(answer)) {
@@ -121,15 +125,18 @@ public class Question {
 	}
 
 
-	public String[] getStatements() {
+	public List<String> getStatements() {
 		return statements;
 	}
 
 
-	public void setStatements(String[] statements) {
+	public void setStatements(List<String> statements) {
 		this.statements = statements;
 	}
 
+	public void addStatement(String statement) {
+		this.statements.add(statement);
+	}
 
 	public String getQuestionAsked() {
 		return questionAsked;
@@ -160,4 +167,11 @@ public class Question {
 		this.explanation = explanation;
 	}
 
+	public void printIt() {
+		System.out.println(toString());
+	}
+	
+	public void printIt(int index) {
+		System.out.println(index +". "+toString());
+	}
 }

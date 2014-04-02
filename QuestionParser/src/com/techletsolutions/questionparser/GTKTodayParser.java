@@ -251,7 +251,7 @@ public class GTKTodayParser {
 			}
 		}
 		printQuestion(questions);
-		saveIntoXLS(questions, "/home/yashpal/projects/erewise/questions/2012-general-studies-paper.xls");
+		//saveIntoXLS(questions, "/home/yashpal/projects/erewise/questions/2012-general-studies-paper.xls");
 	}
 
 	public static void testingIt(String text) {
