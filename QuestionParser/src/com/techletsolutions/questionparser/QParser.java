@@ -9,13 +9,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.techletsolutions.xls.XLSUtils;
+
 public class QParser {
 
 	public static void main(String[] args) throws IOException {
-		quizParser();
+		XLSUtils.saveIntoXLS(quizParser(), "/home/yashpal/projects/erewise/parser/jargron.xls");
 	}
 	
-	public static void quizParser() throws IOException {
+	public static ArrayList<Question> quizParser() throws IOException {
 		ArrayList<Question> questions = new ArrayList<Question>();
 		Document doc = Jsoup.parse( new File("/home/yashpal/projects/erewise/parser/jargron.html"), "UTF-8", "http://www.gktoday.in/");
 		Elements paragraphs = doc.getElementsByTag("p");
@@ -37,7 +39,7 @@ public class QParser {
 					} else {
 						if (string.matches("^[\\(\\)abcd\\.]+.*")) {
 							optionCounter++;
-							option = string.replace("\\([abcd]{1}\\)", "").trim();
+							option = string.replaceFirst("\\(?[a-d ]\\)", "").trim();
 							switch (optionCounter) {
 							case 1: 
 								question.setOptionA(option);
@@ -85,5 +87,6 @@ public class QParser {
 		for (Question quiz : questions) {
 			quiz.printIt(i++);
 		}
+		return questions;
 	}	
 }

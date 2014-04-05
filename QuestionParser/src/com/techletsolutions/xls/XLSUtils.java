@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -46,7 +47,7 @@ public class XLSUtils {
 			cell = row.createCell(columnsIndex.get(xlsSheetHeades[1]));
 			cell.setCellValue(question.getQuestionStatement());
 			
-			String[] statements = question.getStatements();
+			List<String> statements = question.getStatements();
 			
 			cell = row.createCell(columnsIndex.get(xlsSheetHeades[2]));
 			for(String statement : statements) {
