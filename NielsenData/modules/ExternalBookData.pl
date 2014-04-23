@@ -59,7 +59,7 @@ my %book = ('isbn10'          => '',
  #&fetchData('9780194422703');
  #&fetchData('9781860498824');
 
-print Dumper &fetchDataFromNielsen('9780194422703');
+print Dumper &fetchDataFromNielsen('9789812751348');
 
 sub fetchDataFromNielsen() {
 	my $isbn = Business::ISBN->new(shift); 

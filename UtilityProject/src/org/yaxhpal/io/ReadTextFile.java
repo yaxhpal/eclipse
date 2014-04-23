@@ -21,8 +21,8 @@ import java.util.Scanner;
 
 public class ReadTextFile {
 	
-	final static String FILE_NAME = "/home/yashpal/tmp/input.txt";
-	final static String OUTPUT_FILE_NAME = "/home/yashal/tmp/output.txt";
+	final static String FILE_NAME = "/tmp//sandbox/input.txt";
+	final static String OUTPUT_FILE_NAME = "/tmp/sandbox/output.txt";
 	final static Charset ENCODING = StandardCharsets.UTF_8;
 
 	public static void main(String... aArgs) throws IOException{
@@ -44,9 +44,9 @@ public class ReadTextFile {
 	//For smaller files
 
 	/**
-   Note: the javadoc of Files.readAllLines says it's intended for small
-   files. But its implementation uses buffering, so it's likely good 
-   even for fairly large files.
+	 *  Note: the Javadoc of Files.readAllLines says it's intended for small
+	 *  files. But its implementation uses buffering, so it's likely good 
+	 *  even for fairly large files.
 	 */  
 	List<String> readSmallTextFile(String aFileName) throws IOException {
 		Path path = Paths.get(aFileName);
